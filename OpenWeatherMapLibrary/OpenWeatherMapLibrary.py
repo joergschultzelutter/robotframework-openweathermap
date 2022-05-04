@@ -40,7 +40,7 @@ class OpenWeatherMapLibrary:
     # a different APRS-IS server
     # Dependent on the APRS Server that you want to
     # connect with, read-only access via N0CALL may not work
-    # at all and you will receive connection errors when
+    # at all & you will receive connection errors when
     # trying to do so.
     DEFAULT_LATITUDE = 0.0
     DEFAULT_LONGITUDE = 0.0
@@ -83,7 +83,7 @@ class OpenWeatherMapLibrary:
 
     # Python "Getter" methods
     #
-    # Note that adding an additional Robot decorator (@keyword) will not
+    # Note that adding a Robot decorator (@keyword) will not
     # cause an error but the keyword will not be recognized later on
     # Therefore, Robot-specific "getter" keywords are required
     @property
@@ -120,7 +120,7 @@ class OpenWeatherMapLibrary:
 
     # Python "Setter" methods
     #
-    # Note that adding an additional Robot decorator (@keyword) will not
+    # Note that adding a Robot decorator (@keyword) will not
     # cause an error but the keyword will not be recognized later on
     # Therefore, Robot-specific "setter" keywords are required
 
@@ -249,6 +249,41 @@ class OpenWeatherMapLibrary:
     def set_owm_unit(self, owm_unit: str = None):
         logger.debug(msg="Setting OWM Unit")
         self.owm_unit = owm_unit
+
+    #
+    # Robot Framework Action Keywords for OpenWeatherMap
+    #
+    @keyword("Get Current Weather")
+    def get_current_weather(self):
+        pass
+
+    @keyword("Get Hourly Forecasts Four Days")
+    def get_hourly_forecasts_four_days(self):
+        pass
+
+    @keyword("Get OneCall Forecast")
+    def get_onecall_forecast(self):
+        pass
+
+    @keyword("Get Daily Forecasts 16 Days")
+    def get_daily_forecasts_16_days(self):
+        pass
+
+    @keyword("Get Climatic Forecast 30 Days")
+    def get_climatic_forecast_30_days(self):
+        pass
+
+    @keyword("Get Solar Radiation")
+    def get_solar_radiation(self):
+        pass
+
+    @keyword("Get Five Day Three Hour Forecast")
+    def get_5_day_3_hour_forecast(self):
+        pass
+
+    @keyword("Get Air Pollution Data")
+    def get_air_pollution_data(self):
+        pass
 
 
 if __name__ == "__main__":
