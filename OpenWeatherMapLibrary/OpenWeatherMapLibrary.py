@@ -44,38 +44,38 @@ class OpenWeatherMapLibrary:
     # trying to do so.
     DEFAULT_LATITUDE = 0.0
     DEFAULT_LONGITUDE = 0.0
-    DEFAULT_APPID = None
+    DEFAULT_APIKEY = None
     DEFAULT_MODE = "json"
     DEFAULT_UNIT = "standard"
     DEFAULT_LANG = None
     DEFAULT_EXCLUDE = None
-    DEFAULT_CNT = None
+    DEFAULT_NUMBER_OF_RESULTS = None
 
     # Class-internal parameters
     __owm_latitude = None
     __owm_longitude = None
-    __owm_appid = None
+    __owm_apikey = None
     __owm_mode = None
     __owm_unit = None
     __owm_lang = None
     __owm_exclude = None
-    __owm_cnt = None
+    __owm_number = None
 
     def __init__(
             self,
             owm_latitude: float = DEFAULT_LATITUDE,
             owm_longitude: float = DEFAULT_LONGITUDE,
-            owm_appid: str = DEFAULT_APPID,
+            owm_apikey: str = DEFAULT_APIKEY,
             own_mode: str = DEFAULT_MODE,
             owm_unit: str = DEFAULT_UNIT,
             owm_lang: str = DEFAULT_LANG,
             owm_exclude: str = DEFAULT_EXCLUDE,
-            owm_cnt: int = DEFAULT_CNT,
+            owm_number: int = DEFAULT_NUMBER_OF_RESULTS,
     ):
         self.__owm_latitude = owm_latitude
         self.__owm_longitude = owm_longitude
-        self.__owm_appid = owm_appid
-        self.__owm_cnt = owm_cnt
+        self.__owm_apikey = owm_apikey
+        self.__owm_number = owm_number
         self.__owm_lang = owm_lang
         self.__owm_exclude = owm_exclude
         self.__owm_mode = own_mode
@@ -95,12 +95,12 @@ class OpenWeatherMapLibrary:
         return self.__owm_longitude
 
     @property
-    def owm_appid(self):
-        return self.__owm_appid
+    def owm_apikey(self):
+        return self.__owm_apikey
 
     @property
-    def owm_cnt(self):
-        return self.__owm_cnt
+    def owm_number(self):
+        return self.__owm_number
 
     @property
     def owm_lang(self):
@@ -136,17 +136,17 @@ class OpenWeatherMapLibrary:
             raise ValueError("No longitude value has been specified")
         self.__owm_longitude = owm_longitude
 
-    @owm_appid.setter
-    def owm_appid(self, owm_appid: str):
-        if not owm_appid:
-            raise ValueError("No appid value has been specified")
-        self.__owm_appid = owm_appid
+    @owm_apikey.setter
+    def owm_apikey(self, owm_apikey: str):
+        if not owm_apikey:
+            raise ValueError("No API-Key value has been specified")
+        self.__owm_apikey = owm_apikey
 
-    @owm_cnt.setter
-    def owm_cnt(self, owm_cnt: int):
-        if not owm_cnt:
-            raise ValueError("No cnt value has been specified")
-        self.__owm_cnt = owm_cnt
+    @owm_number.setter
+    def owm_number(self, owm_number: int):
+        if not owm_number:
+            raise ValueError("No Number of Results value has been specified")
+        self.__owm_number = owm_number
 
     @owm_lang.setter
     def owm_lang(self, owm_lang: str):
@@ -183,13 +183,13 @@ class OpenWeatherMapLibrary:
     def get_owm_longitude(self):
         return self.owm_longitude
 
-    @keyword("Get OpenWeatherMap AppID")
-    def get_owm_appid(self):
-        return self.owm_appid
+    @keyword("Get OpenWeatherMap API Key")
+    def get_owm_apikey(self):
+        return self.owm_apikey
 
-    @keyword("Get OpenWeatherMap Cnt")
-    def get_owm_cnt(self):
-        return self.owm_cnt
+    @keyword("Get OpenWeatherMap Number Of Results")
+    def get_owm_number(self):
+        return self.owm_number
 
     @keyword("Get OpenWeatherMap Language")
     def get_owm_lang(self):
@@ -220,15 +220,15 @@ class OpenWeatherMapLibrary:
         logger.debug(msg="Setting OWM Longitude")
         self.owm_longitude = owm_longitude
 
-    @keyword("Set OpenWeatherMap AppID")
-    def set_owm_appid(self, owm_appid: str = None):
-        logger.debug(msg="Setting OWM AppId")
-        self.owm_appid = owm_appid
+    @keyword("Set OpenWeatherMap API Key")
+    def set_owm_apikey(self, owm_apikey: str = None):
+        logger.debug(msg="Setting OWM API Key")
+        self.owm_apikey = owm_apikey
 
-    @keyword("Set OpenWeatherMap Cnt")
-    def set_owm_cnt(self, owm_cnt: int = None):
-        logger.debug(msg="Setting OWM Cnt")
-        self.owm_cnt = owm_cnt
+    @keyword("Set OpenWeatherMap Number Of Results")
+    def set_owm_number(self, owm_number: int = None):
+        logger.debug(msg="Setting OWM Number Of Results")
+        self.owm_number = owm_number
 
     @keyword("Set OpenWeatherMap Language")
     def set_owm_lang(self, owm_lang: str = None):
