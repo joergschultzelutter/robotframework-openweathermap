@@ -29,7 +29,7 @@ Number Of Results Getter Setter
 	Should Be Equal			${VALUE1}	${VALUE2}
 
 Excludes Getter Setter
-	Set Local Variable		${VALUE1}	hourly
+	Set Local Variable		${VALUE1}	hourly,daily
 	Set OpenWeatherMap Excludes 	${VALUE1}	
 	${VALUE2}=			Get OpenWeatherMap Excludes
 	Should Be Equal			${VALUE1}	${VALUE2}

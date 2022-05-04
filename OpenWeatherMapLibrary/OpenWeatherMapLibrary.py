@@ -189,7 +189,7 @@ class OpenWeatherMapLibrary:
         valid_excludes = ["current", "minutely", "hourly", "daily", "alerts"]
         if not owm_exclude:
             raise ValueError("No exclude value has been specified")
-        owm_exclude = owm_exclude.lower()
+        owm_exclude = owm_exclude.lower().replace(" ","")
         excludes = owm_exclude.split(",")
         for exclude in excludes:
             if exclude not in valid_excludes:
