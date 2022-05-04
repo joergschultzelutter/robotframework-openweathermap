@@ -20,7 +20,7 @@
 #
 
 from robot.api.deco import library, keyword
-
+from enum import Enum
 import re
 import logging
 
@@ -31,6 +31,13 @@ logger = logging.getLogger(__name__)
 
 __version__ = "0.1.0"
 __author__ = "Joerg Schultze-Lutter"
+
+
+class OpenWeatherMapApiType(Enum):
+    API = "api"
+    PRO = "pro"
+    HISTORY = "history"
+    BULK = "bulk"
 
 
 @library(scope="GLOBAL", auto_keywords=True)
@@ -183,7 +190,7 @@ class OpenWeatherMapLibrary:
         valid_excludes = ["current", "minutely", "hourly", "daily", "alerts"]
         if not owm_exclude:
             raise ValueError("No exclude value has been specified")
-        owm_exclude = owm_exclude.lower().replace(" ","")
+        owm_exclude = owm_exclude.lower().replace(" ", "")
         excludes = owm_exclude.split(",")
         for exclude in excludes:
             if exclude not in valid_excludes:
@@ -299,9 +306,11 @@ class OpenWeatherMapLibrary:
     #
     @keyword("Get Current Weather")
     def get_current_weather(
-        self, latitude: float = None, longitude: float = None, apikey: float = None
+        self, latitude: float = None, longitude: float = None, apikey: str = None
     ):
-        __pro_api = False
+        __url_path = "/2.5/weather?"
+        url = self.__get_base_api(api_type=OpenWeatherMapApiType.API) + __url_path
+
         pass
 
     @keyword("Get Hourly Forecasts Four Days")
@@ -309,12 +318,13 @@ class OpenWeatherMapLibrary:
         self,
         latitude: float = None,
         longitude: float = None,
-        apikey: float = None,
+        apikey: str = None,
         output_format: str = None,
         number: int = None,
         language: str = None,
     ):
-        __pro_api = True
+        __url_path = "/2.5/forecast/hourly?"
+        url = self.__get_base_api(api_type=OpenWeatherMapApiType.PRO) + __url_path
         pass
 
     @keyword("Get OneCall Forecast")
@@ -322,12 +332,13 @@ class OpenWeatherMapLibrary:
         self,
         latitude: float = None,
         longitude: float = None,
-        apikey: float = None,
+        apikey: str = None,
         exclude: str = None,
         unit_format: str = None,
         language: str = None,
     ):
-        __pro_api = False
+        __url_path = "/2.5/onecall?"
+        url = self.__get_base_api(api_type=OpenWeatherMapApiType.API) + __url_path
         pass
 
     @keyword("Get Daily Forecasts 16 Days")
@@ -335,13 +346,14 @@ class OpenWeatherMapLibrary:
         self,
         latitude: float = None,
         longitude: float = None,
-        apikey: float = None,
+        apikey: str = None,
         number: int = None,
         output_format: str = None,
         unit_format: str = None,
         language: str = None,
     ):
-        __pro_api = False
+        __url_path = "/2.5/forecast/daily?"
+        url = self.__get_base_api(api_type=OpenWeatherMapApiType.API) + __url_path
         pass
 
     @keyword("Get Climatic Forecast 30 Days")
@@ -349,27 +361,43 @@ class OpenWeatherMapLibrary:
         self,
         latitude: float = None,
         longitude: float = None,
-        apikey: float = None,
+        apikey: str = None,
         number: int = None,
         output_format: str = None,
         unit_format: str = None,
         language: str = None,
     ):
-        __pro_api = True
+        __url_path = "/2.5/forecast/climate?"
+        url = self.__get_base_api(api_type=OpenWeatherMapApiType.PRO) + __url_path
         pass
 
     @keyword("Get Current Solar Radiation")
     def get_current_solar_radiation(
         self, latitude: float = None, longitude: float = None, apikey: float = None
     ):
-        __pro_api = False
+        __url_path = "/2.5/solar_radiation?"
+        url = self.__get_base_api(api_type=OpenWeatherMapApiType.API) + __url_path
         pass
 
     @keyword("Get Solar Radiation Forecast")
     def get_solar_radiation_forecast(
-        self, latitude: float = None, longitude: float = None, apikey: float = None
+        self, latitude: float = None, longitude: float = None, apikey: str = None
     ):
-        __pro_api = False
+        __url_path = "/2.5/solar_radiation/forecast?"
+        url = self.__get_base_api(api_type=OpenWeatherMapApiType.API) + __url_path
+        pass
+
+    @keyword("Get Solar Radiation History")
+    def get_solar_radiation_history(
+        self,
+        latitude: float = None,
+        longitude: float = None,
+        apikey: str = None,
+        start: int = None,
+        end: int = None,
+    ):
+        __url_path = "/2.5/solar_radiation/history?"
+        url = self.__get_base_api(api_type=OpenWeatherMapApiType.API) + __url_path
         pass
 
     @keyword("Get 5 Day 3 Hour Forecast")
@@ -377,21 +405,49 @@ class OpenWeatherMapLibrary:
         self,
         latitude: float = None,
         longitude: float = None,
-        apikey: float = None,
+        str: float = None,
         number: int = None,
         output_format: str = None,
         unit_format: str = None,
         language: str = None,
     ):
-        __pro_api = False
+        __url_path = "/2.5/forecast?"
+        url = self.__get_base_api(api_type=OpenWeatherMapApiType.API)
         pass
 
     @keyword("Get Air Pollution Data")
     def get_air_pollution_data(
-        self, latitude: float = None, longitude: float = None, apikey: float = None
+        self, latitude: float = None, longitude: float = None, apikey: str = None
     ):
-        __pro_api = False
+        __url_path = "/2.5/air_pollution/forecast?"
+        url = self.__get_base_api(api_type=OpenWeatherMapApiType.API)
         pass
+
+    @keyword("Get Air Pollution Data History")
+    def get_air_pollution_data_history(
+        self,
+        latitude: float = None,
+        longitude: float = None,
+        apikey: str = None,
+        start: int = None,
+        end: int = None,
+    ):
+        __url_path = "/2.5/air_pollution/history?"
+        url = self.__get_base_api(api_type=OpenWeatherMapApiType.API)
+        pass
+
+    def __get_base_api(self, api_type: Enum):
+        url = ""
+        valid_values = [
+            OpenWeatherMapApiType.API,
+            OpenWeatherMapApiType.PRO,
+            OpenWeatherMapApiType.HISTORY,
+            OpenWeatherMapApiType.BULK,
+        ]
+        if api_type not in valid_values:
+            raise ValueError("Received invalid enum value for base URL")
+        url = "https://" + api_type.value + ".openweathermap.org/data"
+        return url
 
 
 if __name__ == "__main__":
