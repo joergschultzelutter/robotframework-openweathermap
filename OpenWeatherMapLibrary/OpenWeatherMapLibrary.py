@@ -36,12 +36,6 @@ __author__ = "Joerg Schultze-Lutter"
 @library(scope="GLOBAL", auto_keywords=True)
 class OpenWeatherMapLibrary:
     # These are our default parameter settings
-    # Change these settings if you e.g. prefer to use
-    # a different APRS-IS server
-    # Dependent on the APRS Server that you want to
-    # connect with, read-only access via N0CALL may not work
-    # at all & you will receive connection errors when
-    # trying to do so.
     DEFAULT_LATITUDE = 0.0
     DEFAULT_LONGITUDE = 0.0
     DEFAULT_APIKEY = None
