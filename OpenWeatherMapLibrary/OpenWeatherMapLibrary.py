@@ -45,7 +45,7 @@ class OpenWeatherMapLibrary:
     DEFAULT_LATITUDE = 0.0
     DEFAULT_LONGITUDE = 0.0
     DEFAULT_APIKEY = None
-    DEFAULT_MODE = "json"
+    DEFAULT_FORMAT = "json"
     DEFAULT_UNIT = "standard"
     DEFAULT_LANG = None
     DEFAULT_EXCLUDE = None
@@ -55,7 +55,7 @@ class OpenWeatherMapLibrary:
     __owm_latitude = None
     __owm_longitude = None
     __owm_apikey = None
-    __owm_mode = None
+    __owm_format = None
     __owm_unit = None
     __owm_lang = None
     __owm_exclude = None
@@ -66,7 +66,7 @@ class OpenWeatherMapLibrary:
             owm_latitude: float = DEFAULT_LATITUDE,
             owm_longitude: float = DEFAULT_LONGITUDE,
             owm_apikey: str = DEFAULT_APIKEY,
-            own_mode: str = DEFAULT_MODE,
+            own_format: str = DEFAULT_FORMAT,
             owm_unit: str = DEFAULT_UNIT,
             owm_lang: str = DEFAULT_LANG,
             owm_exclude: str = DEFAULT_EXCLUDE,
@@ -78,7 +78,7 @@ class OpenWeatherMapLibrary:
         self.__owm_number = owm_number
         self.__owm_lang = owm_lang
         self.__owm_exclude = owm_exclude
-        self.__owm_mode = own_mode
+        self.__owm_format = own_format
         self.__owm_unit = owm_unit
 
     # Python "Getter" methods
@@ -111,8 +111,8 @@ class OpenWeatherMapLibrary:
         return self.__owm_exclude
 
     @property
-    def owm_mode(self):
-        return self.__owm_mode
+    def owm_format(self):
+        return self.__owm_format
 
     @property
     def owm_unit(self):
@@ -160,11 +160,11 @@ class OpenWeatherMapLibrary:
             raise ValueError("No exclude value has been specified")
         self.__owm_exclude = owm_exclude
 
-    @owm_mode.setter
-    def owm_mode(self, owm_mode: str):
-        if not owm_mode:
-            raise ValueError("No mode value has been specified")
-        self.__owm_mode = owm_mode
+    @owm_format.setter
+    def owm_format(self, owm_format: str):
+        if not owm_format:
+            raise ValueError("No output format value has been specified")
+        self.__owm_format = owm_format
 
     @owm_unit.setter
     def owm_unit(self, owm_unit: str):
@@ -199,9 +199,9 @@ class OpenWeatherMapLibrary:
     def get_owm_exclude(self):
         return self.owm_exclude
 
-    @keyword("Get OpenWeatherMap Data Format")
-    def get_owm_mode(self):
-        return self.owm_mode
+    @keyword("Get OpenWeatherMap Output Format")
+    def get_owm_format(self):
+        return self.owm_format
 
     @keyword("Get OpenWeatherMap Unit Format")
     def get_owm_unit(self):
@@ -240,10 +240,10 @@ class OpenWeatherMapLibrary:
         logger.debug(msg="Setting OWM Excludes")
         self.owm_exclude = owm_exclude
 
-    @keyword("Set OpenWeatherMap Data Format")
-    def set_owm_lang(self, owm_mode: str = None):
-        logger.debug(msg="Setting OWM Mode")
-        self.owm_mode = owm_mode
+    @keyword("Set OpenWeatherMap Output Format")
+    def set_owm_lang(self, owm_format: str = None):
+        logger.debug(msg="Setting OWM Output Format")
+        self.owm_format = owm_format
 
     @keyword("Set OpenWeatherMap Unit Format")
     def set_owm_unit(self, owm_unit: str = None):
@@ -254,35 +254,48 @@ class OpenWeatherMapLibrary:
     # Robot Framework Action Keywords for OpenWeatherMap
     #
     @keyword("Get Current Weather")
-    def get_current_weather(self):
+    def get_current_weather(self, latitude: float = None, longitude: float = None, apikey: float = None):
+        __pro_api = False
         pass
 
     @keyword("Get Hourly Forecasts Four Days")
-    def get_hourly_forecasts_four_days(self):
+    def get_hourly_forecasts_four_days(self,latitude: float = None, longitude: float = None, apikey: float = None, format: str = None, number: int = None, lang: str=None):
+        __pro_api = True
         pass
 
     @keyword("Get OneCall Forecast")
-    def get_onecall_forecast(self):
+    def get_onecall_forecast(self,latitude: float = None, longitude: float = None, apikey: float = None, exclude: str = None, unit: str = None, lang: str=None):
+        __pro_api = False
         pass
 
     @keyword("Get Daily Forecasts 16 Days")
-    def get_daily_forecasts_16_days(self):
+    def get_daily_forecasts_16_days(self,latitude: float = None, longitude: float = None, apikey: float = None, number: int = None, format: str = None, unit: str = None, lang: str=None):
+        __pro_api = False
         pass
 
     @keyword("Get Climatic Forecast 30 Days")
-    def get_climatic_forecast_30_days(self):
+    def get_climatic_forecast_30_days(self, latitude: float = None, longitude: float = None, apikey: float = None, number: int = None, format: str = None, unit: str = None, lang: str=None):
+        __pro_api = True
         pass
 
-    @keyword("Get Solar Radiation")
-    def get_solar_radiation(self):
+    @keyword("Get Current Solar Radiation")
+    def get_current_solar_radiation(self, latitude: float = None, longitude: float = None, apikey: float = None):
+        __pro_api = False
         pass
 
-    @keyword("Get Five Day Three Hour Forecast")
-    def get_5_day_3_hour_forecast(self):
+    @keyword("Get Solar Radiation Forecast")
+    def get_solar_radiation_forecast(self, latitude: float = None, longitude: float = None, apikey: float = None):
+        __pro_api = False
+        pass
+
+    @keyword("Get 5 Day 3 Hour Forecast")
+    def get_5_day_3_hour_forecast(self, latitude: float = None, longitude: float = None, apikey: float = None, number: int = None, format: str = None, unit: str = None, lang: str=None):
+        __pro_api = False
         pass
 
     @keyword("Get Air Pollution Data")
-    def get_air_pollution_data(self):
+    def get_air_pollution_data(self, latitude: float = None, longitude: float = None, apikey: float = None):
+        __pro_api = False
         pass
 
 
