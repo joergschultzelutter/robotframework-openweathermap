@@ -40,14 +40,14 @@ class OpenWeatherMapApiType(Enum):
     BULK = "bulk"
 
 
-@library(scope="GLOBAL", auto_keywords=True)
+@library(scope="GLOBAL", auto_keywords=False)
 class OpenWeatherMapLibrary:
     # These are our default parameter settings
-    DEFAULT_LATITUDE = 0.0
-    DEFAULT_LONGITUDE = 0.0
+    DEFAULT_LATITUDE = None
+    DEFAULT_LONGITUDE = None
     DEFAULT_APIKEY = None
-    DEFAULT_OUTPUT_FORMAT = "json"
-    DEFAULT_UNIT_FORMAT = "standard"
+    DEFAULT_OUTPUT_FORMAT = None
+    DEFAULT_UNIT_FORMAT = None
     DEFAULT_LANGUAGE = None
     DEFAULT_EXCLUDE = None
     DEFAULT_NUMBER_OF_RESULTS = None
@@ -306,12 +306,26 @@ class OpenWeatherMapLibrary:
     #
     @keyword("Get Current Weather")
     def get_current_weather(
-        self, latitude: float = None, longitude: float = None, apikey: str = None
+        self,
+        latitude: float = None,
+        longitude: float = None,
+        apikey: str = None,
+        output_format: str = None,
+        unit_format: str = None,
+        language: str = None,
     ):
-        __url_path = "/2.5/weather?"
+        __url_path = "/2.5/weather"
         url = self.__get_base_api(api_type=OpenWeatherMapApiType.API) + __url_path
 
-        pass
+        # Add mandatory / optional fields
+        # fmt: off
+        url = url + self.__add_parameter(name="lat",catenator="?",param1=self.get_owm_latitude(), param2=latitude, optional=False)
+        url = url + self.__add_parameter(name="lon",catenator="&",param1=self.get_owm_longitude(), param2=longitude, optional=False)
+        url = url + self.__add_parameter(name="appid",catenator="&",param1=self.get_owm_apikey(), param2=apikey, optional=False)
+        url = url + self.__add_parameter(name="mode",catenator="&",param1=self.get_owm_output_format(), param2=output_format, optional=True)
+        url = url + self.__add_parameter(name="units",catenator="&",param1=self.get_owm_unit_format(), param2=unit_format, optional=True)
+        url = url + self.__add_parameter(name="lang",catenator="&",param1=self.get_owm_language(), param2=language, optional=True)
+        # fmt: on
 
     @keyword("Get Hourly Forecasts Four Days")
     def get_hourly_forecasts_four_days(
@@ -323,7 +337,7 @@ class OpenWeatherMapLibrary:
         number: int = None,
         language: str = None,
     ):
-        __url_path = "/2.5/forecast/hourly?"
+        __url_path = "/2.5/forecast/hourly"
         url = self.__get_base_api(api_type=OpenWeatherMapApiType.PRO) + __url_path
         pass
 
@@ -449,6 +463,27 @@ class OpenWeatherMapLibrary:
         url = "https://" + api_type.value + ".openweathermap.org/data"
         return url
 
+    def __add_parameter(
+        self, name: str, catenator: str, param1: object, param2: object, optional: bool
+    ):
+        if not optional and not param1 and not param2:
+            raise ValueError(
+                f"Value for '{name}' neither set nor provided via parameter"
+            )
+
+        value = param2 if param2 else param1
+        response = ""
+        if value:
+            response = f"{catenator}{name}={value}"
+        else:
+            if not optional:
+                raise ValueError(
+                    f"Value for {name} neither set nor provided via parameter"
+                )
+
+        return response
+
 
 if __name__ == "__main__":
-    pass
+    a = OpenWeatherMapLibrary()
+    b = a.get_current_weather(latitude=1.0, longitude=2.0, apikey="Hallo")
