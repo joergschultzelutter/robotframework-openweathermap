@@ -18,8 +18,8 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
-
-from robot.api.deco import library, keyword
+import requests.cookies
+from robot.api.deco import library, keyword, not_keyword
 from enum import Enum
 import re
 import logging
@@ -386,17 +386,56 @@ class OpenWeatherMapLibrary:
         __url_path = "/2.5/weather"
         url = self.__get_base_api(api_type=OpenWeatherMapApiType.API) + __url_path
 
-        # Add mandatory / optional fields
-        # fmt: off
-        url = url + self.__add_parameter(name="lat",catenator="?",param1=self.get_owm_latitude(), param2=latitude, optional=False)
-        url = url + self.__add_parameter(name="lon",catenator="&",param1=self.get_owm_longitude(), param2=longitude, optional=False)
-        url = url + self.__add_parameter(name="appid",catenator="&",param1=self.get_owm_apikey(), param2=apikey, optional=False)
-        url = url + self.__add_parameter(name="mode",catenator="&",param1=self.get_owm_output_format(), param2=output_format, optional=True)
-        url = url + self.__add_parameter(name="units",catenator="&",param1=self.get_owm_unit_format(), param2=unit_format, optional=True)
-        url = url + self.__add_parameter(name="lang",catenator="&",param1=self.get_owm_language(), param2=language, optional=True)
-        # fmt: on
+        # Add mandatory / optional fields whereas present
+        # parameter payload dictionary
+        payload = {}
 
-    @keyword("Get Hourly Forecasts Four Days")
+        payload = self.__add_parameter(
+            name="lat",
+            param1=self.get_owm_latitude(),
+            param2=latitude,
+            optional=False,
+            payload=payload,
+        )
+        payload = self.__add_parameter(
+            name="lon",
+            param1=self.get_owm_longitude(),
+            param2=longitude,
+            optional=False,
+            payload=payload,
+        )
+        payload = self.__add_parameter(
+            name="appid",
+            param1=self.get_owm_apikey(),
+            param2=apikey,
+            optional=False,
+            payload=payload,
+        )
+        payload = self.__add_parameter(
+            name="mode",
+            param1=self.get_owm_output_format(),
+            param2=output_format,
+            optional=True,
+            payload=payload,
+        )
+        payload = self.__add_parameter(
+            name="units",
+            param1=self.get_owm_unit_format(),
+            param2=unit_format,
+            optional=True,
+            payload=payload,
+        )
+        payload = self.__add_parameter(
+            name="lang",
+            param1=self.get_owm_language(),
+            param2=language,
+            optional=True,
+            payload=payload,
+        )
+
+        return self.__make_request(url=url, payload=payload)
+
+    @keyword("Get Hourly Forecasts 4 Days")
     def get_hourly_forecasts_four_days(
         self,
         latitude: float = None,
@@ -408,7 +447,55 @@ class OpenWeatherMapLibrary:
     ):
         __url_path = "/2.5/forecast/hourly"
         url = self.__get_base_api(api_type=OpenWeatherMapApiType.PRO) + __url_path
-        pass
+
+        # Add mandatory / optional fields whereas present
+        # parameter payload dictionary
+        payload = {}
+
+        payload = self.__add_parameter(
+            name="lat",
+            param1=self.get_owm_latitude(),
+            param2=latitude,
+            optional=False,
+            payload=payload,
+        )
+        payload = self.__add_parameter(
+            name="lon",
+            param1=self.get_owm_longitude(),
+            param2=longitude,
+            optional=False,
+            payload=payload,
+        )
+        payload = self.__add_parameter(
+            name="appid",
+            param1=self.get_owm_apikey(),
+            param2=apikey,
+            optional=False,
+            payload=payload,
+        )
+        payload = self.__add_parameter(
+            name="mode",
+            param1=self.get_owm_output_format(),
+            param2=output_format,
+            optional=True,
+            payload=payload,
+        )
+        payload = self.__add_parameter(
+            name="cnt",
+            param1=self.get_owm_number(),
+            param2=number,
+            optional=True,
+            payload=payload,
+        )
+        payload = self.__add_parameter(
+            name="lang",
+            param1=self.get_owm_language(),
+            param2=language,
+            optional=True,
+            payload=payload,
+        )
+
+        return self.__make_request(url=url, payload=payload)
 
     @keyword("Get OneCall Forecast")
     def get_onecall_forecast(
@@ -420,9 +507,57 @@ class OpenWeatherMapLibrary:
         unit_format: str = None,
         language: str = None,
     ):
-        __url_path = "/2.5/onecall?"
+        __url_path = "/2.5/onecall"
         url = self.__get_base_api(api_type=OpenWeatherMapApiType.API) + __url_path
-        pass
+
+        # Add mandatory / optional fields whereas present
+        # parameter payload dictionary
+        payload = {}
+
+        payload = self.__add_parameter(
+            name="lat",
+            param1=self.get_owm_latitude(),
+            param2=latitude,
+            optional=False,
+            payload=payload,
+        )
+        payload = self.__add_parameter(
+            name="lon",
+            param1=self.get_owm_longitude(),
+            param2=longitude,
+            optional=False,
+            payload=payload,
+        )
+        payload = self.__add_parameter(
+            name="appid",
+            param1=self.get_owm_apikey(),
+            param2=apikey,
+            optional=False,
+            payload=payload,
+        )
+        payload = self.__add_parameter(
+            name="exclude",
+            param1=self.get_owm_exclude(),
+            param2=exclude,
+            optional=True,
+            payload=payload,
+        )
+        payload = self.__add_parameter(
+            name="units",
+            param1=self.get_owm_unit_format(),
+            param2=unit_format,
+            optional=True,
+            payload=payload,
+        )
+        payload = self.__add_parameter(
+            name="lang",
+            param1=self.get_owm_language(),
+            param2=language,
+            optional=True,
+            payload=payload,
+        )
+
+        return self.__make_request(url=url, payload=payload)
 
     @keyword("Get Daily Forecasts 16 Days")
     def get_daily_forecasts_16_days(
@@ -435,9 +570,64 @@ class OpenWeatherMapLibrary:
         unit_format: str = None,
         language: str = None,
     ):
-        __url_path = "/2.5/forecast/daily?"
+        __url_path = "/2.5/forecast/daily"
         url = self.__get_base_api(api_type=OpenWeatherMapApiType.API) + __url_path
-        pass
+
+        # Add mandatory / optional fields whereas present
+        # parameter payload dictionary
+        payload = {}
+
+        payload = self.__add_parameter(
+            name="lat",
+            param1=self.get_owm_latitude(),
+            param2=latitude,
+            optional=False,
+            payload=payload,
+        )
+        payload = self.__add_parameter(
+            name="lon",
+            param1=self.get_owm_longitude(),
+            param2=longitude,
+            optional=False,
+            payload=payload,
+        )
+        payload = self.__add_parameter(
+            name="appid",
+            param1=self.get_owm_apikey(),
+            param2=apikey,
+            optional=False,
+            payload=payload,
+        )
+        payload = self.__add_parameter(
+            name="mode",
+            param1=self.get_owm_output_format(),
+            param2=output_format,
+            optional=True,
+            payload=payload,
+        )
+        payload = self.__add_parameter(
+            name="cnt",
+            param1=self.get_owm_number(),
+            param2=number,
+            optional=True,
+            payload=payload,
+        )
+        payload = self.__add_parameter(
+            name="lang",
+            param1=self.get_owm_language(),
+            param2=language,
+            optional=True,
+            payload=payload,
+        )
+        payload = self.__add_parameter(
+            name="units",
+            param1=self.get_owm_unit_format(),
+            param2=unit_format,
+            optional=True,
+            payload=payload,
+        )
+
+        return self.__make_request(url=url, payload=payload)
 
     @keyword("Get Climatic Forecast 30 Days")
     def get_climatic_forecast_30_days(
@@ -450,25 +640,134 @@ class OpenWeatherMapLibrary:
         unit_format: str = None,
         language: str = None,
     ):
-        __url_path = "/2.5/forecast/climate?"
+        __url_path = "/2.5/forecast/climate"
         url = self.__get_base_api(api_type=OpenWeatherMapApiType.PRO) + __url_path
-        pass
+
+        # Add mandatory / optional fields whereas present
+        # parameter payload dictionary
+        payload = {}
+
+        payload = self.__add_parameter(
+            name="lat",
+            param1=self.get_owm_latitude(),
+            param2=latitude,
+            optional=False,
+            payload=payload,
+        )
+        payload = self.__add_parameter(
+            name="lon",
+            param1=self.get_owm_longitude(),
+            param2=longitude,
+            optional=False,
+            payload=payload,
+        )
+        payload = self.__add_parameter(
+            name="appid",
+            param1=self.get_owm_apikey(),
+            param2=apikey,
+            optional=False,
+            payload=payload,
+        )
+        payload = self.__add_parameter(
+            name="mode",
+            param1=self.get_owm_output_format(),
+            param2=output_format,
+            optional=True,
+            payload=payload,
+        )
+        payload = self.__add_parameter(
+            name="cnt",
+            param1=self.get_owm_number(),
+            param2=number,
+            optional=True,
+            payload=payload,
+        )
+        payload = self.__add_parameter(
+            name="lang",
+            param1=self.get_owm_language(),
+            param2=language,
+            optional=True,
+            payload=payload,
+        )
+        payload = self.__add_parameter(
+            name="units",
+            param1=self.get_owm_unit_format(),
+            param2=unit_format,
+            optional=True,
+            payload=payload,
+        )
+
+        return self.__make_request(url=url, payload=payload)
 
     @keyword("Get Current Solar Radiation")
     def get_current_solar_radiation(
         self, latitude: float = None, longitude: float = None, apikey: float = None
     ):
-        __url_path = "/2.5/solar_radiation?"
+        __url_path = "/2.5/solar_radiation"
         url = self.__get_base_api(api_type=OpenWeatherMapApiType.API) + __url_path
-        pass
+
+        # Add mandatory / optional fields whereas present
+        # parameter payload dictionary
+        payload = {}
+
+        payload = self.__add_parameter(
+            name="lat",
+            param1=self.get_owm_latitude(),
+            param2=latitude,
+            optional=False,
+            payload=payload,
+        )
+        payload = self.__add_parameter(
+            name="lon",
+            param1=self.get_owm_longitude(),
+            param2=longitude,
+            optional=False,
+            payload=payload,
+        )
+        payload = self.__add_parameter(
+            name="appid",
+            param1=self.get_owm_apikey(),
+            param2=apikey,
+            optional=False,
+            payload=payload,
+        )
+
+        return self.__make_request(url=url, payload=payload)
 
     @keyword("Get Solar Radiation Forecast")
     def get_solar_radiation_forecast(
         self, latitude: float = None, longitude: float = None, apikey: str = None
     ):
-        __url_path = "/2.5/solar_radiation/forecast?"
+        __url_path = "/2.5/solar_radiation/forecast"
         url = self.__get_base_api(api_type=OpenWeatherMapApiType.API) + __url_path
-        pass
+
+        # Add mandatory / optional fields whereas present
+        # parameter payload dictionary
+        payload = {}
+
+        payload = self.__add_parameter(
+            name="lat",
+            param1=self.get_owm_latitude(),
+            param2=latitude,
+            optional=False,
+            payload=payload,
+        )
+        payload = self.__add_parameter(
+            name="lon",
+            param1=self.get_owm_longitude(),
+            param2=longitude,
+            optional=False,
+            payload=payload,
+        )
+        payload = self.__add_parameter(
+            name="appid",
+            param1=self.get_owm_apikey(),
+            param2=apikey,
+            optional=False,
+            payload=payload,
+        )
+
+        return self.__make_request(url=url, payload=payload)
 
     @keyword("Get Solar Radiation History")
     def get_solar_radiation_history(
@@ -479,9 +778,50 @@ class OpenWeatherMapLibrary:
         start: int = None,
         end: int = None,
     ):
-        __url_path = "/2.5/solar_radiation/history?"
+        __url_path = "/2.5/solar_radiation/history"
         url = self.__get_base_api(api_type=OpenWeatherMapApiType.API) + __url_path
-        pass
+
+        # Add mandatory / optional fields whereas present
+        # parameter payload dictionary
+        payload = {}
+
+        payload = self.__add_parameter(
+            name="lat",
+            param1=self.get_owm_latitude(),
+            param2=latitude,
+            optional=False,
+            payload=payload,
+        )
+        payload = self.__add_parameter(
+            name="lon",
+            param1=self.get_owm_longitude(),
+            param2=longitude,
+            optional=False,
+            payload=payload,
+        )
+        payload = self.__add_parameter(
+            name="appid",
+            param1=self.get_owm_apikey(),
+            param2=apikey,
+            optional=False,
+            payload=payload,
+        )
+        payload = self.__add_parameter(
+            name="start",
+            param1=self.get_owm_datetime_start(),
+            param2=start,
+            optional=False,
+            payload=payload,
+        )
+        payload = self.__add_parameter(
+            name="cnt",
+            param1=self.get_owm_datetime_end(),
+            param2=end,
+            optional=False,
+            payload=payload,
+        )
+
+        return self.__make_request(url=url, payload=payload)
 
     @keyword("Get 5 Day 3 Hour Forecast")
     def get_5_day_3_hour_forecast(
@@ -494,17 +834,137 @@ class OpenWeatherMapLibrary:
         unit_format: str = None,
         language: str = None,
     ):
-        __url_path = "/2.5/forecast?"
+        __url_path = "/2.5/forecast"
         url = self.__get_base_api(api_type=OpenWeatherMapApiType.API)
-        pass
 
-    @keyword("Get Air Pollution Data")
+        # Add mandatory / optional fields whereas present
+        # parameter payload dictionary
+        payload = {}
+
+        payload = self.__add_parameter(
+            name="lat",
+            param1=self.get_owm_latitude(),
+            param2=latitude,
+            optional=False,
+            payload=payload,
+        )
+        payload = self.__add_parameter(
+            name="lon",
+            param1=self.get_owm_longitude(),
+            param2=longitude,
+            optional=False,
+            payload=payload,
+        )
+        payload = self.__add_parameter(
+            name="appid",
+            param1=self.get_owm_apikey(),
+            param2=apikey,
+            optional=False,
+            payload=payload,
+        )
+        payload = self.__add_parameter(
+            name="mode",
+            param1=self.get_owm_output_format(),
+            param2=output_format,
+            optional=True,
+            payload=payload,
+        )
+        payload = self.__add_parameter(
+            name="cnt",
+            param1=self.get_owm_number(),
+            param2=number,
+            optional=True,
+            payload=payload,
+        )
+        payload = self.__add_parameter(
+            name="lang",
+            param1=self.get_owm_language(),
+            param2=language,
+            optional=True,
+            payload=payload,
+        )
+        payload = self.__add_parameter(
+            name="units",
+            param1=self.get_owm_unit_format(),
+            param2=unit_format,
+            optional=True,
+            payload=payload,
+        )
+
+        return self.__make_request(url=url, payload=payload)
+
+    @keyword("Get Current Air Pollution Data")
     def get_air_pollution_data(
         self, latitude: float = None, longitude: float = None, apikey: str = None
     ):
-        __url_path = "/2.5/air_pollution/forecast?"
+        __url_path = "/2.5/air_pollution/forecast"
         url = self.__get_base_api(api_type=OpenWeatherMapApiType.API)
-        pass
+
+        # Add mandatory / optional fields whereas present
+        # parameter payload dictionary
+        payload = {}
+
+        payload = self.__add_parameter(
+            name="lat",
+            param1=self.get_owm_latitude(),
+            param2=latitude,
+            optional=False,
+            payload=payload,
+        )
+        payload = self.__add_parameter(
+            name="lon",
+            param1=self.get_owm_longitude(),
+            param2=longitude,
+            optional=False,
+            payload=payload,
+        )
+        payload = self.__add_parameter(
+            name="appid",
+            param1=self.get_owm_apikey(),
+            param2=apikey,
+            optional=False,
+            payload=payload,
+        )
+
+        return self.__make_request(url=url, payload=payload)
+
+    @keyword("Get Air Pollution Data Forecast")
+    def get_air_pollution_data_forecast(
+        self,
+        latitude: float = None,
+        longitude: float = None,
+        apikey: str = None,
+    ):
+        __url_path = "/2.5/air_pollution/forecast"
+        url = self.__get_base_api(api_type=OpenWeatherMapApiType.API)
+
+        # Add mandatory / optional fields whereas present
+        # parameter payload dictionary
+        payload = {}
+
+        payload = self.__add_parameter(
+            name="lat",
+            param1=self.get_owm_latitude(),
+            param2=latitude,
+            optional=False,
+            payload=payload,
+        )
+        payload = self.__add_parameter(
+            name="lon",
+            param1=self.get_owm_longitude(),
+            param2=longitude,
+            optional=False,
+            payload=payload,
+        )
+        payload = self.__add_parameter(
+            name="appid",
+            param1=self.get_owm_apikey(),
+            param2=apikey,
+            optional=False,
+            payload=payload,
+        )
+
+        return self.__make_request(url=url, payload=payload)
 
     @keyword("Get Air Pollution Data History")
     def get_air_pollution_data_history(
@@ -515,10 +975,38 @@ class OpenWeatherMapLibrary:
         start: int = None,
         end: int = None,
     ):
-        __url_path = "/2.5/air_pollution/history?"
+        __url_path = "/2.5/air_pollution/history"
         url = self.__get_base_api(api_type=OpenWeatherMapApiType.API)
-        pass
 
+        # Add mandatory / optional fields whereas present
+        # parameter payload dictionary
+        payload = {}
+
+        payload = self.__add_parameter(
+            name="lat",
+            param1=self.get_owm_latitude(),
+            param2=latitude,
+            optional=False,
+            payload=payload,
+        )
+        payload = self.__add_parameter(
+            name="lon",
+            param1=self.get_owm_longitude(),
+            param2=longitude,
+            optional=False,
+            payload=payload,
+        )
+        payload = self.__add_parameter(
+            name="appid",
+            param1=self.get_owm_apikey(),
+            param2=apikey,
+            optional=False,
+            payload=payload,
+        )
+
+        return self.__make_request(url=url, payload=payload)
+
+    @not_keyword
     def __get_base_api(self, api_type: Enum):
         url = ""
         valid_values = [
@@ -532,8 +1020,9 @@ class OpenWeatherMapLibrary:
         url = "https://" + api_type.value + ".openweathermap.org/data"
         return url
 
+    @not_keyword
     def __add_parameter(
-        self, name: str, catenator: str, param1: object, param2: object, optional: bool
+        self, name: str, param1: object, param2: object, optional: bool, payload: dict
     ):
         if not optional and not param1 and not param2:
             raise ValueError(
@@ -543,16 +1032,19 @@ class OpenWeatherMapLibrary:
         value = param2 if param2 else param1
         response = ""
         if value:
-            response = f"{catenator}{name}={value}"
+            payload[name] = value
         else:
             if not optional:
                 raise ValueError(
                     f"Value for {name} neither set nor provided via parameter"
                 )
 
-        return response
+        return payload
+
+    def __make_request(self, url: str, payload: dict):
+        resp = requests.get(url=url, params=payload)
+        return resp.status_code, resp.text
 
 
 if __name__ == "__main__":
-    a = OpenWeatherMapLibrary()
-    b = a.get_current_weather(latitude=1.0, longitude=2.0, apikey="Hallo")
+    pass

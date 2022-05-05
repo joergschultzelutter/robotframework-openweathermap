@@ -1,5 +1,8 @@
 *** Settings ***
 Library						OpenWeatherMapLibrary.py
+Library						OperatingSystem
+
+Suite Setup	Get API Access Key
 
 *** Variables ***
 
@@ -70,5 +73,15 @@ Datetime Getter Setter
 	${VALUE2}=			Get OpenWeatherMap Datetime
 	Should Be Equal			${VALUE1}	${VALUE2}
 
+Get OneCall Forecast Test
+	${VALUE1}=			Convert To Number	51.0		
+	${VALUE2}=			Convert To Number	8.0		
+	${RESPONSE_CODE}  ${RESPONSE_BODY}=	Get OneCall Forecast	latitude=${VALUE1}	longitude=${VALUE2}	apikey=${APIKEY}
+	Log To Console	  ${RESPONSE_CODE}
+	Log To Console	  ${RESPONSE_BODY}
 
-
+*** Keywords ***
+Get API Access Key
+	${APIKEY}=	Get Environment Variable	OWM_API_KEY
+	Should Not Be Equal	${APIKEY}	${None}
+	Set Suite Variable	${APIKEY}	${APIKEY}	
