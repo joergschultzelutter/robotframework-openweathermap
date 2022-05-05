@@ -1,7 +1,7 @@
-#!/opt/local/bin/python3
+#!/usr/local/bin/python3
 #
-# Robot Framework Keyword library wrapper for
-# OpenWeatherMap API
+# Robot Framework Keyword library wrapper for the
+# OpenWeatherMap API (https://openweathermap.org/api)
 # Author: Joerg Schultze-Lutter, 2022
 #
 # This program is free software; you can redistribute it and/or modify
@@ -32,7 +32,10 @@ logger = logging.getLogger(__name__)
 __version__ = "0.1.0"
 __author__ = "Joerg Schultze-Lutter"
 
-
+#
+# Various API types which are supported by the OpenWeatherMap API
+# Enum value is used for the construction of the future URL
+#
 class OpenWeatherMapApiType(Enum):
     API = "api"
     PRO = "pro"
@@ -40,9 +43,12 @@ class OpenWeatherMapApiType(Enum):
     BULK = "bulk"
 
 
+#
+# Robot Framework Keyword Library for the OpenWeatherMap API
+#
 @library(scope="GLOBAL", auto_keywords=False)
 class OpenWeatherMapLibrary:
-    # These are our default parameter settings
+    # Default parameter settings
     DEFAULT_LATITUDE = None
     DEFAULT_LONGITUDE = None
     DEFAULT_APIKEY = None
@@ -68,6 +74,7 @@ class OpenWeatherMapLibrary:
     __owm_datetime_end = None
     __owm_datetime = None
 
+    # constructor
     def __init__(
         self,
         owm_latitude: float = DEFAULT_LATITUDE,
@@ -202,6 +209,7 @@ class OpenWeatherMapLibrary:
                 f"Invalid language code specified; valid values: {valid_languages}"
             )
 
+        # Language code convenience mapping
         if owm_language == "cn":
             owm_language = "zh_cn"
         if owm_language == "tw":
@@ -211,11 +219,20 @@ class OpenWeatherMapLibrary:
 
     @owm_exclude.setter
     def owm_exclude(self, owm_exclude: str):
+        # 'excludes' value can contain 1..n comma-separated values
+        # have a look at each one of them and check if we have
+        # received something that looks valid
         valid_excludes = ["current", "minutely", "hourly", "daily", "alerts"]
         if not owm_exclude:
             raise ValueError("No exclude value has been specified")
+
+        # lowercase our value and remove any potential spaces
         owm_exclude = owm_exclude.lower().replace(" ", "")
+
+        # Split it up with comma separator
         excludes = owm_exclude.split(",")
+
+        # Iterate through that list
         for exclude in excludes:
             if exclude not in valid_excludes:
                 raise ValueError(
@@ -1008,6 +1025,20 @@ class OpenWeatherMapLibrary:
 
     @not_keyword
     def __get_base_api(self, api_type: Enum):
+        """
+        Construct the base URL based on the ENUM value that is associated
+        with each API call
+
+        Parameters
+        ==========
+        api_type : 'Enum'
+            API type, defined in class OpenWeatherMapApiType
+
+        Returns
+        =======
+        url: 'str'
+            OpenWeatherMap base URL
+        """
         url = ""
         valid_values = [
             OpenWeatherMapApiType.API,
@@ -1024,6 +1055,35 @@ class OpenWeatherMapLibrary:
     def __add_parameter(
         self, name: str, param1: object, param2: object, optional: bool, payload: dict
     ):
+        """
+        Receives a set of two values (value 2 has priority over value 1) and a
+        variable name. Adds name/value setting to dict if present. When
+        'optional' flag is set to False, throw an exception if neither
+        value 1 nor value 2 are provided
+
+        Parameters
+        ==========
+        name : 'str'
+            Variable name
+        param1: 'object'
+            Value of any data type. By default, this variable's value is the
+            one that the user has potentially set via the "Set ... " keywords
+        param2: 'object'
+            Value of any data type. By default, this variable's value is the
+            one that the user has passed along as part of the actual keyword
+            (which will then have priority over the ones set by the "Set ..."
+            keywords
+        optional: 'bool'
+            True = Do not throw an exception if neither param1 nor param2 are
+                   provided
+        payload: 'dict'
+            Payload key/value dictionary for our HTTP GET request
+
+        Returns
+        =======
+        payload: 'dict'
+            Payload key/value dictionary for our HTTP GET request
+        """
         if not optional and not param1 and not param2:
             raise ValueError(
                 f"Value for '{name}' neither set nor provided via parameter"
@@ -1041,7 +1101,23 @@ class OpenWeatherMapLibrary:
 
         return payload
 
+    @not_keyword
     def __make_request(self, url: str, payload: dict):
+        """
+        Issues a HTTP GET and returns the response code / body
+        Parameters
+        ==========
+        url : 'str'
+            Our URL that we want to run the GET for
+        payload: 'dict'
+            URL parameters
+        Returns
+        =======
+        status_code: 'int'
+            numeric HTTP status code
+        text: 'str'
+            HTTP response body
+        """
         resp = requests.get(url=url, params=payload)
         return resp.status_code, resp.text
 
