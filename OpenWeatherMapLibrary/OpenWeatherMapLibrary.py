@@ -410,48 +410,14 @@ class OpenWeatherMapLibrary:
         # parameter payload dictionary
         payload = {}
 
-        payload = self.__add_parameter(
-            name="lat",
-            param1=self.get_owm_latitude(),
-            param2=latitude,
-            optional=False,
-            payload=payload,
-        )
-        payload = self.__add_parameter(
-            name="lon",
-            param1=self.get_owm_longitude(),
-            param2=longitude,
-            optional=False,
-            payload=payload,
-        )
-        payload = self.__add_parameter(
-            name="appid",
-            param1=self.get_owm_apikey(),
-            param2=apikey,
-            optional=False,
-            payload=payload,
-        )
-        payload = self.__add_parameter(
-            name="mode",
-            param1=self.get_owm_output_format(),
-            param2=output_format,
-            optional=True,
-            payload=payload,
-        )
-        payload = self.__add_parameter(
-            name="units",
-            param1=self.get_owm_unit_format(),
-            param2=unit_format,
-            optional=True,
-            payload=payload,
-        )
-        payload = self.__add_parameter(
-            name="lang",
-            param1=self.get_owm_language(),
-            param2=language,
-            optional=True,
-            payload=payload,
-        )
+        # fmt: off
+        payload = self.__add_parameter(name="lat", param1=self.get_owm_latitude(), param2=latitude, optional=False, payload=payload)
+        payload = self.__add_parameter(name="lon", param1=self.get_owm_longitude(), param2=longitude, optional=False, payload=payload)
+        payload = self.__add_parameter(name="appid", param1=self.get_owm_apikey(), param2=apikey, optional=False, payload=payload)
+        payload = self.__add_parameter(name="mode", param1=self.get_owm_output_format(), param2=output_format, optional=True, payload=payload)
+        payload = self.__add_parameter(name="units", param1=self.get_owm_unit_format(), param2=unit_format, optional=True, payload=payload)
+        payload = self.__add_parameter(name="lang", param1=self.get_owm_language(), param2=language, optional=True, payload=payload)
+        # fmt: on
 
         return self.__make_request(url=url, payload=payload)
 
@@ -475,48 +441,14 @@ class OpenWeatherMapLibrary:
         # parameter payload dictionary
         payload = {}
 
-        payload = self.__add_parameter(
-            name="lat",
-            param1=self.get_owm_latitude(),
-            param2=latitude,
-            optional=False,
-            payload=payload,
-        )
-        payload = self.__add_parameter(
-            name="lon",
-            param1=self.get_owm_longitude(),
-            param2=longitude,
-            optional=False,
-            payload=payload,
-        )
-        payload = self.__add_parameter(
-            name="appid",
-            param1=self.get_owm_apikey(),
-            param2=apikey,
-            optional=False,
-            payload=payload,
-        )
-        payload = self.__add_parameter(
-            name="mode",
-            param1=self.get_owm_output_format(),
-            param2=output_format,
-            optional=True,
-            payload=payload,
-        )
-        payload = self.__add_parameter(
-            name="cnt",
-            param1=self.get_owm_number(),
-            param2=number,
-            optional=True,
-            payload=payload,
-        )
-        payload = self.__add_parameter(
-            name="lang",
-            param1=self.get_owm_language(),
-            param2=language,
-            optional=True,
-            payload=payload,
-        )
+        # fmt: off
+        payload = self.__add_parameter(name="lat", param1=self.get_owm_latitude(), param2=latitude, optional=False, payload=payload)
+        payload = self.__add_parameter(name="lon", param1=self.get_owm_longitude(), param2=longitude, optional=False, payload=payload)
+        payload = self.__add_parameter(name="appid", param1=self.get_owm_apikey(), param2=apikey, optional=False, payload=payload)
+        payload = self.__add_parameter(name="mode", param1=self.get_owm_output_format(), param2=output_format, optional=True, payload=payload)
+        payload = self.__add_parameter(name="cnt", param1=self.get_owm_number(), param2=number, optional=True, payload=payload)
+        payload = self.__add_parameter(name="lang", param1=self.get_owm_language(), param2=language, optional=True, payload=payload)
+        # fmt: on
 
         return self.__make_request(url=url, payload=payload)
 
@@ -540,48 +472,14 @@ class OpenWeatherMapLibrary:
         # parameter payload dictionary
         payload = {}
 
-        payload = self.__add_parameter(
-            name="lat",
-            param1=self.get_owm_latitude(),
-            param2=latitude,
-            optional=False,
-            payload=payload,
-        )
-        payload = self.__add_parameter(
-            name="lon",
-            param1=self.get_owm_longitude(),
-            param2=longitude,
-            optional=False,
-            payload=payload,
-        )
-        payload = self.__add_parameter(
-            name="appid",
-            param1=self.get_owm_apikey(),
-            param2=apikey,
-            optional=False,
-            payload=payload,
-        )
-        payload = self.__add_parameter(
-            name="exclude",
-            param1=self.get_owm_exclude(),
-            param2=exclude,
-            optional=True,
-            payload=payload,
-        )
-        payload = self.__add_parameter(
-            name="units",
-            param1=self.get_owm_unit_format(),
-            param2=unit_format,
-            optional=True,
-            payload=payload,
-        )
-        payload = self.__add_parameter(
-            name="lang",
-            param1=self.get_owm_language(),
-            param2=language,
-            optional=True,
-            payload=payload,
-        )
+        # fmt: off
+        payload = self.__add_parameter(name="lat", param1=self.get_owm_latitude(), param2=latitude, optional=False, payload=payload)
+        payload = self.__add_parameter(name="lon", param1=self.get_owm_longitude(), param2=longitude, optional=False, payload=payload)
+        payload = self.__add_parameter(name="appid", param1=self.get_owm_apikey(), param2=apikey, optional=False, payload=payload)
+        payload = self.__add_parameter(name="exclude", param1=self.get_owm_exclude(), param2=exclude, optional=True, payload=payload)
+        payload = self.__add_parameter(name="units", param1=self.get_owm_unit_format(), param2=unit_format, optional=True, payload=payload)
+        payload = self.__add_parameter(name="lang", param1=self.get_owm_language(), param2=language, optional=True, payload=payload)
+        # fmt: on
 
         return self.__make_request(url=url, payload=payload)
 
@@ -606,55 +504,15 @@ class OpenWeatherMapLibrary:
         # parameter payload dictionary
         payload = {}
 
-        payload = self.__add_parameter(
-            name="lat",
-            param1=self.get_owm_latitude(),
-            param2=latitude,
-            optional=False,
-            payload=payload,
-        )
-        payload = self.__add_parameter(
-            name="lon",
-            param1=self.get_owm_longitude(),
-            param2=longitude,
-            optional=False,
-            payload=payload,
-        )
-        payload = self.__add_parameter(
-            name="appid",
-            param1=self.get_owm_apikey(),
-            param2=apikey,
-            optional=False,
-            payload=payload,
-        )
-        payload = self.__add_parameter(
-            name="mode",
-            param1=self.get_owm_output_format(),
-            param2=output_format,
-            optional=True,
-            payload=payload,
-        )
-        payload = self.__add_parameter(
-            name="cnt",
-            param1=self.get_owm_number(),
-            param2=number,
-            optional=True,
-            payload=payload,
-        )
-        payload = self.__add_parameter(
-            name="lang",
-            param1=self.get_owm_language(),
-            param2=language,
-            optional=True,
-            payload=payload,
-        )
-        payload = self.__add_parameter(
-            name="units",
-            param1=self.get_owm_unit_format(),
-            param2=unit_format,
-            optional=True,
-            payload=payload,
-        )
+        # fmt: off
+        payload = self.__add_parameter(name="lat", param1=self.get_owm_latitude(), param2=latitude, optional=False, payload=payload)
+        payload = self.__add_parameter(name="lon", param1=self.get_owm_longitude(), param2=longitude, optional=False, payload=payload)
+        payload = self.__add_parameter(name="appid", param1=self.get_owm_apikey(), param2=apikey, optional=False, payload=payload)
+        payload = self.__add_parameter(name="mode", param1=self.get_owm_output_format(), param2=output_format, optional=True, payload=payload)
+        payload = self.__add_parameter(name="cnt", param1=self.get_owm_number(), param2=number, optional=True, payload=payload)
+        payload = self.__add_parameter(name="lang", param1=self.get_owm_language(), param2=language, optional=True, payload=payload)
+        payload = self.__add_parameter(name="units", param1=self.get_owm_unit_format(), param2=unit_format, optional=True, payload=payload)
+        # fmt: on
 
         return self.__make_request(url=url, payload=payload)
 
@@ -679,55 +537,15 @@ class OpenWeatherMapLibrary:
         # parameter payload dictionary
         payload = {}
 
-        payload = self.__add_parameter(
-            name="lat",
-            param1=self.get_owm_latitude(),
-            param2=latitude,
-            optional=False,
-            payload=payload,
-        )
-        payload = self.__add_parameter(
-            name="lon",
-            param1=self.get_owm_longitude(),
-            param2=longitude,
-            optional=False,
-            payload=payload,
-        )
-        payload = self.__add_parameter(
-            name="appid",
-            param1=self.get_owm_apikey(),
-            param2=apikey,
-            optional=False,
-            payload=payload,
-        )
-        payload = self.__add_parameter(
-            name="mode",
-            param1=self.get_owm_output_format(),
-            param2=output_format,
-            optional=True,
-            payload=payload,
-        )
-        payload = self.__add_parameter(
-            name="cnt",
-            param1=self.get_owm_number(),
-            param2=number,
-            optional=True,
-            payload=payload,
-        )
-        payload = self.__add_parameter(
-            name="lang",
-            param1=self.get_owm_language(),
-            param2=language,
-            optional=True,
-            payload=payload,
-        )
-        payload = self.__add_parameter(
-            name="units",
-            param1=self.get_owm_unit_format(),
-            param2=unit_format,
-            optional=True,
-            payload=payload,
-        )
+        # fmt: off
+        payload = self.__add_parameter(name="lat", param1=self.get_owm_latitude(), param2=latitude, optional=False, payload=payload)
+        payload = self.__add_parameter(name="lon", param1=self.get_owm_longitude(), param2=longitude, optional=False, payload=payload)
+        payload = self.__add_parameter(name="appid", param1=self.get_owm_apikey(), param2=apikey, optional=False, payload=payload)
+        payload = self.__add_parameter(name="mode", param1=self.get_owm_output_format(), param2=output_format, optional=True, payload=payload)
+        payload = self.__add_parameter(name="cnt", param1=self.get_owm_number(), param2=number, optional=True, payload=payload)
+        payload = self.__add_parameter(name="lang", param1=self.get_owm_language(), param2=language, optional=True, payload=payload)
+        payload = self.__add_parameter(name="units", param1=self.get_owm_unit_format(), param2=unit_format, optional=True, payload=payload)
+        # fmt: on
 
         return self.__make_request(url=url, payload=payload)
 
@@ -745,27 +563,11 @@ class OpenWeatherMapLibrary:
         # parameter payload dictionary
         payload = {}
 
-        payload = self.__add_parameter(
-            name="lat",
-            param1=self.get_owm_latitude(),
-            param2=latitude,
-            optional=False,
-            payload=payload,
-        )
-        payload = self.__add_parameter(
-            name="lon",
-            param1=self.get_owm_longitude(),
-            param2=longitude,
-            optional=False,
-            payload=payload,
-        )
-        payload = self.__add_parameter(
-            name="appid",
-            param1=self.get_owm_apikey(),
-            param2=apikey,
-            optional=False,
-            payload=payload,
-        )
+        # fmt: off
+        payload = self.__add_parameter(name="lat", param1=self.get_owm_latitude(), param2=latitude, optional=False, payload=payload)
+        payload = self.__add_parameter(name="lon", param1=self.get_owm_longitude(), param2=longitude, optional=False, payload=payload)
+        payload = self.__add_parameter(name="appid", param1=self.get_owm_apikey(), param2=apikey, optional=False, payload=payload)
+        # fmt: on
 
         return self.__make_request(url=url, payload=payload)
 
@@ -783,27 +585,11 @@ class OpenWeatherMapLibrary:
         # parameter payload dictionary
         payload = {}
 
-        payload = self.__add_parameter(
-            name="lat",
-            param1=self.get_owm_latitude(),
-            param2=latitude,
-            optional=False,
-            payload=payload,
-        )
-        payload = self.__add_parameter(
-            name="lon",
-            param1=self.get_owm_longitude(),
-            param2=longitude,
-            optional=False,
-            payload=payload,
-        )
-        payload = self.__add_parameter(
-            name="appid",
-            param1=self.get_owm_apikey(),
-            param2=apikey,
-            optional=False,
-            payload=payload,
-        )
+        # fmt: off
+        payload = self.__add_parameter(name="lat", param1=self.get_owm_latitude(), param2=latitude, optional=False, payload=payload)
+        payload = self.__add_parameter(name="lon", param1=self.get_owm_longitude(), param2=longitude, optional=False, payload=payload)
+        payload = self.__add_parameter(name="appid", param1=self.get_owm_apikey(), param2=apikey, optional=False, payload=payload)
+        # fmt: on
 
         return self.__make_request(url=url, payload=payload)
 
@@ -826,41 +612,13 @@ class OpenWeatherMapLibrary:
         # parameter payload dictionary
         payload = {}
 
-        payload = self.__add_parameter(
-            name="lat",
-            param1=self.get_owm_latitude(),
-            param2=latitude,
-            optional=False,
-            payload=payload,
-        )
-        payload = self.__add_parameter(
-            name="lon",
-            param1=self.get_owm_longitude(),
-            param2=longitude,
-            optional=False,
-            payload=payload,
-        )
-        payload = self.__add_parameter(
-            name="appid",
-            param1=self.get_owm_apikey(),
-            param2=apikey,
-            optional=False,
-            payload=payload,
-        )
-        payload = self.__add_parameter(
-            name="start",
-            param1=self.get_owm_datetime_start(),
-            param2=start,
-            optional=False,
-            payload=payload,
-        )
-        payload = self.__add_parameter(
-            name="cnt",
-            param1=self.get_owm_datetime_end(),
-            param2=end,
-            optional=False,
-            payload=payload,
-        )
+        # fmt: off
+        payload = self.__add_parameter(name="lat", param1=self.get_owm_latitude(), param2=latitude, optional=False, payload=payload)
+        payload = self.__add_parameter(name="lon", param1=self.get_owm_longitude(), param2=longitude, optional=False, payload=payload)
+        payload = self.__add_parameter(name="appid", param1=self.get_owm_apikey(), param2=apikey, optional=False, payload=payload)
+        payload = self.__add_parameter(name="start", param1=self.get_owm_datetime_start(), param2=start, optional=False, payload=payload)
+        payload = self.__add_parameter(name="end", param1=self.get_owm_datetime_end(), param2=end, optional=False, payload=payload)
+        # fmt: on
 
         return self.__make_request(url=url, payload=payload)
 
@@ -885,55 +643,15 @@ class OpenWeatherMapLibrary:
         # parameter payload dictionary
         payload = {}
 
-        payload = self.__add_parameter(
-            name="lat",
-            param1=self.get_owm_latitude(),
-            param2=latitude,
-            optional=False,
-            payload=payload,
-        )
-        payload = self.__add_parameter(
-            name="lon",
-            param1=self.get_owm_longitude(),
-            param2=longitude,
-            optional=False,
-            payload=payload,
-        )
-        payload = self.__add_parameter(
-            name="appid",
-            param1=self.get_owm_apikey(),
-            param2=apikey,
-            optional=False,
-            payload=payload,
-        )
-        payload = self.__add_parameter(
-            name="mode",
-            param1=self.get_owm_output_format(),
-            param2=output_format,
-            optional=True,
-            payload=payload,
-        )
-        payload = self.__add_parameter(
-            name="cnt",
-            param1=self.get_owm_number(),
-            param2=number,
-            optional=True,
-            payload=payload,
-        )
-        payload = self.__add_parameter(
-            name="lang",
-            param1=self.get_owm_language(),
-            param2=language,
-            optional=True,
-            payload=payload,
-        )
-        payload = self.__add_parameter(
-            name="units",
-            param1=self.get_owm_unit_format(),
-            param2=unit_format,
-            optional=True,
-            payload=payload,
-        )
+        # fmt: off
+        payload = self.__add_parameter(name="lat", param1=self.get_owm_latitude(), param2=latitude, optional=False, payload=payload)
+        payload = self.__add_parameter(name="lon", param1=self.get_owm_longitude(), param2=longitude, optional=False, payload=payload)
+        payload = self.__add_parameter(name="appid", param1=self.get_owm_apikey(), param2=apikey, optional=False, payload=payload)
+        payload = self.__add_parameter(name="mode", param1=self.get_owm_output_format(), param2=output_format, optional=True, payload=payload)
+        payload = self.__add_parameter(name="cnt", param1=self.get_owm_number(), param2=number, optional=True, payload=payload)
+        payload = self.__add_parameter(name="lang", param1=self.get_owm_language(), param2=language, optional=True, payload=payload)
+        payload = self.__add_parameter(name="units", param1=self.get_owm_unit_format(), param2=unit_format, optional=True, payload=payload)
+        # fmt: on
 
         return self.__make_request(url=url, payload=payload)
 
@@ -951,27 +669,11 @@ class OpenWeatherMapLibrary:
         # parameter payload dictionary
         payload = {}
 
-        payload = self.__add_parameter(
-            name="lat",
-            param1=self.get_owm_latitude(),
-            param2=latitude,
-            optional=False,
-            payload=payload,
-        )
-        payload = self.__add_parameter(
-            name="lon",
-            param1=self.get_owm_longitude(),
-            param2=longitude,
-            optional=False,
-            payload=payload,
-        )
-        payload = self.__add_parameter(
-            name="appid",
-            param1=self.get_owm_apikey(),
-            param2=apikey,
-            optional=False,
-            payload=payload,
-        )
+        # fmt: off
+        payload = self.__add_parameter(name="lat", param1=self.get_owm_latitude(), param2=latitude, optional=False, payload=payload)
+        payload = self.__add_parameter(name="lon", param1=self.get_owm_longitude(), param2=longitude, optional=False, payload=payload)
+        payload = self.__add_parameter(name="appid", param1=self.get_owm_apikey(), param2=apikey, optional=False, payload=payload)
+        # fmt: on
 
         return self.__make_request(url=url, payload=payload)
 
@@ -992,27 +694,11 @@ class OpenWeatherMapLibrary:
         # parameter payload dictionary
         payload = {}
 
-        payload = self.__add_parameter(
-            name="lat",
-            param1=self.get_owm_latitude(),
-            param2=latitude,
-            optional=False,
-            payload=payload,
-        )
-        payload = self.__add_parameter(
-            name="lon",
-            param1=self.get_owm_longitude(),
-            param2=longitude,
-            optional=False,
-            payload=payload,
-        )
-        payload = self.__add_parameter(
-            name="appid",
-            param1=self.get_owm_apikey(),
-            param2=apikey,
-            optional=False,
-            payload=payload,
-        )
+        # fmt: off
+        payload = self.__add_parameter(name="lat", param1=self.get_owm_latitude(), param2=latitude, optional=False, payload=payload)
+        payload = self.__add_parameter(name="lon", param1=self.get_owm_longitude(), param2=longitude, optional=False, payload=payload)
+        payload = self.__add_parameter(name="appid", param1=self.get_owm_apikey(), param2=apikey, optional=False, payload=payload)
+        # fmt: on
 
         return self.__make_request(url=url, payload=payload)
 
@@ -1035,27 +721,11 @@ class OpenWeatherMapLibrary:
         # parameter payload dictionary
         payload = {}
 
-        payload = self.__add_parameter(
-            name="lat",
-            param1=self.get_owm_latitude(),
-            param2=latitude,
-            optional=False,
-            payload=payload,
-        )
-        payload = self.__add_parameter(
-            name="lon",
-            param1=self.get_owm_longitude(),
-            param2=longitude,
-            optional=False,
-            payload=payload,
-        )
-        payload = self.__add_parameter(
-            name="appid",
-            param1=self.get_owm_apikey(),
-            param2=apikey,
-            optional=False,
-            payload=payload,
-        )
+        # fmt: off
+        payload = self.__add_parameter(name="lat", param1=self.get_owm_latitude(), param2=latitude, optional=False, payload=payload)
+        payload = self.__add_parameter(name="lon", param1=self.get_owm_longitude(), param2=longitude, optional=False, payload=payload)
+        payload = self.__add_parameter(name="appid", param1=self.get_owm_apikey(), param2=apikey, optional=False, payload=payload)
+        # fmt: on
 
         return self.__make_request(url=url, payload=payload)
 
