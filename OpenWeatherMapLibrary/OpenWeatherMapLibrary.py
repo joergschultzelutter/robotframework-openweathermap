@@ -51,6 +51,9 @@ class OpenWeatherMapLibrary:
     DEFAULT_LANGUAGE = None
     DEFAULT_EXCLUDE = None
     DEFAULT_NUMBER_OF_RESULTS = None
+    DEFAULT_DATETIME_START = None
+    DEFAULT_DATETIME_END = None
+    DEFAULT_DATETIME = None
 
     # Class-internal parameters
     __owm_latitude = None
@@ -61,6 +64,9 @@ class OpenWeatherMapLibrary:
     __owm_language = None
     __owm_exclude = None
     __owm_number = None
+    __owm_datetime_start = None
+    __owm_datetime_end = None
+    __owm_datetime = None
 
     def __init__(
         self,
@@ -72,6 +78,9 @@ class OpenWeatherMapLibrary:
         owm_language: str = DEFAULT_LANGUAGE,
         owm_exclude: str = DEFAULT_EXCLUDE,
         owm_number: int = DEFAULT_NUMBER_OF_RESULTS,
+        owm_datetime_start: int = DEFAULT_DATETIME_START,
+        owm_datetime_end: int = DEFAULT_DATETIME_END,
+        owm_datetime: int = DEFAULT_DATETIME,
     ):
         self.__owm_latitude = owm_latitude
         self.__owm_longitude = owm_longitude
@@ -81,6 +90,9 @@ class OpenWeatherMapLibrary:
         self.__owm_exclude = owm_exclude
         self.__owm_output_format = own_output_format
         self.__owm_unit_format = owm_unit_format
+        self.__owm_datetime_start = owm_datetime_start
+        self.__owm_datetime_end = owm_datetime_end
+        self.__owm_datetime = owm_datetime
 
     # Python "Getter" methods
     #
@@ -118,6 +130,18 @@ class OpenWeatherMapLibrary:
     @property
     def owm_unit_format(self):
         return self.__owm_unit_format
+
+    @property
+    def owm_datetime_start(self):
+        return self.__owm_datetime_start
+
+    @property
+    def owm_datetime_end(self):
+        return self.__owm_datetime_end
+
+    @property
+    def owm_datetime(self):
+        return self.__owm_datetime
 
     # Python "Setter" methods
     #
@@ -223,6 +247,24 @@ class OpenWeatherMapLibrary:
             )
         self.__owm_unit_format = owm_unit_format
 
+    @owm_datetime_start.setter
+    def owm_datetime_start(self, owm_datetime_start: str):
+        if not owm_datetime_start:
+            raise ValueError("No datetime-start value has been specified")
+        self.__owm_datetime_start = owm_datetime_start
+
+    @owm_datetime_end.setter
+    def owm_datetime_end(self, owm_datetime_end: str):
+        if not owm_datetime_end:
+            raise ValueError("No datetime-end value has been specified")
+        self.__owm_datetime_end = owm_datetime_end
+
+    @owm_datetime.setter
+    def owm_datetime(self, owm_datetime: str):
+        if not owm_datetime:
+            raise ValueError("No datetime value has been specified")
+        self.__owm_datetime = owm_datetime
+
     #
     # Robot-specific "getter" keywords
     #
@@ -257,6 +299,18 @@ class OpenWeatherMapLibrary:
     @keyword("Get OpenWeatherMap Unit Format")
     def get_owm_unit_format(self):
         return self.owm_unit_format
+
+    @keyword("Get OpenWeatherMap Datetime Start")
+    def get_owm_datetime_start(self):
+        return self.owm_datetime_start
+
+    @keyword("Get OpenWeatherMap Datetime End")
+    def get_owm_datetime_end(self):
+        return self.owm_datetime_end
+
+    @keyword("Get OpenWeatherMap Datetime")
+    def get_owm_datetime(self):
+        return self.owm_datetime
 
     #
     # Robot-specific "setter" keywords
@@ -300,6 +354,21 @@ class OpenWeatherMapLibrary:
     def set_owm_unit_format(self, owm_unit_format: str = None):
         logger.debug(msg="Setting OWM Unit Format")
         self.owm_unit_format = owm_unit_format
+
+    @keyword("Set OpenWeatherMap Datetime Start")
+    def set_owm_datetime_start(self, owm_datetime_start: int = None):
+        logger.debug(msg="Setting OWM Datetime Start")
+        self.owm_datetime_start = owm_datetime_start
+
+    @keyword("Set OpenWeatherMap Datetime End")
+    def set_owm_datetime_end(self, owm_datetime_end: int = None):
+        logger.debug(msg="Setting OWM Datetime End")
+        self.owm_datetime_end = owm_datetime_end
+
+    @keyword("Set OpenWeatherMap Datetime")
+    def set_owm_datetime(self, owm_datetime: int = None):
+        logger.debug(msg="Setting OWM Datetime")
+        self.owm_datetime = owm_datetime
 
     #
     # Robot Framework Action Keywords for OpenWeatherMap

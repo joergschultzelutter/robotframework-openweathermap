@@ -52,8 +52,23 @@ Language Getter Setter
 	${VALUE2}=			Get OpenWeatherMap Language
 	Should Be Equal			${VALUE1}	${VALUE2}
 
+Datetime Start Getter Setter
+	${VALUE1}=			Convert To Number	1234	
+	Set OpenWeatherMap Datetime Start	${VALUE1}	
+	${VALUE2}=			Get OpenWeatherMap Datetime Start
+	Should Be Equal			${VALUE1}	${VALUE2}
 
+Datetime End Getter Setter
+	${VALUE1}=			Convert To Number	5678	
+	Set OpenWeatherMap Datetime End	${VALUE1}	
+	${VALUE2}=			Get OpenWeatherMap Datetime End
+	Should Be Equal			${VALUE1}	${VALUE2}
 
+Datetime Getter Setter
+	${VALUE1}=			Convert To Number	9012	
+	Set OpenWeatherMap Datetime	${VALUE1}	
+	${VALUE2}=			Get OpenWeatherMap Datetime
+	Should Be Equal			${VALUE1}	${VALUE2}
 
 
 
