@@ -391,6 +391,9 @@ class OpenWeatherMapLibrary:
     # Robot Framework Action Keywords for OpenWeatherMap
     #
     @keyword("Get Current Weather")
+    #
+    # API Call:https://openweathermap.org/current
+    #
     def get_current_weather(
         self,
         latitude: float = None,
@@ -453,6 +456,9 @@ class OpenWeatherMapLibrary:
         return self.__make_request(url=url, payload=payload)
 
     @keyword("Get Hourly Forecasts 4 Days")
+    #
+    # API Call:https://openweathermap.org/api/hourly-forecast
+    #
     def get_hourly_forecasts_four_days(
         self,
         latitude: float = None,
@@ -515,6 +521,9 @@ class OpenWeatherMapLibrary:
         return self.__make_request(url=url, payload=payload)
 
     @keyword("Get OneCall Forecast")
+    #
+    # API Call:https://openweathermap.org/api/one-call-api
+    #
     def get_onecall_forecast(
         self,
         latitude: float = None,
@@ -577,6 +586,9 @@ class OpenWeatherMapLibrary:
         return self.__make_request(url=url, payload=payload)
 
     @keyword("Get Daily Forecasts 16 Days")
+    #
+    # API Call:https://openweathermap.org/forecast16
+    #
     def get_daily_forecasts_16_days(
         self,
         latitude: float = None,
@@ -647,6 +659,9 @@ class OpenWeatherMapLibrary:
         return self.__make_request(url=url, payload=payload)
 
     @keyword("Get Climatic Forecast 30 Days")
+    #
+    # API Call:https://openweathermap.org/forecast30
+    #
     def get_climatic_forecast_30_days(
         self,
         latitude: float = None,
@@ -717,6 +732,9 @@ class OpenWeatherMapLibrary:
         return self.__make_request(url=url, payload=payload)
 
     @keyword("Get Current Solar Radiation")
+    #
+    # API Call:https://openweathermap.org/api/solar-radiation
+    #
     def get_current_solar_radiation(
         self, latitude: float = None, longitude: float = None, apikey: float = None
     ):
@@ -752,6 +770,9 @@ class OpenWeatherMapLibrary:
         return self.__make_request(url=url, payload=payload)
 
     @keyword("Get Solar Radiation Forecast")
+    #
+    # API Call:https://openweathermap.org/api/solar-radiation
+    #
     def get_solar_radiation_forecast(
         self, latitude: float = None, longitude: float = None, apikey: str = None
     ):
@@ -787,6 +808,9 @@ class OpenWeatherMapLibrary:
         return self.__make_request(url=url, payload=payload)
 
     @keyword("Get Solar Radiation History")
+    #
+    # API Call:https://openweathermap.org/api/solar-radiation
+    #
     def get_solar_radiation_history(
         self,
         latitude: float = None,
@@ -841,6 +865,9 @@ class OpenWeatherMapLibrary:
         return self.__make_request(url=url, payload=payload)
 
     @keyword("Get 5 Day 3 Hour Forecast")
+    #
+    # API Call:https://openweathermap.org/forecast5
+    #
     def get_5_day_3_hour_forecast(
         self,
         latitude: float = None,
@@ -911,6 +938,9 @@ class OpenWeatherMapLibrary:
         return self.__make_request(url=url, payload=payload)
 
     @keyword("Get Current Air Pollution Data")
+    #
+    # API Call:https://openweathermap.org/api/air-pollution
+    #
     def get_air_pollution_data(
         self, latitude: float = None, longitude: float = None, apikey: str = None
     ):
@@ -946,6 +976,9 @@ class OpenWeatherMapLibrary:
         return self.__make_request(url=url, payload=payload)
 
     @keyword("Get Air Pollution Data Forecast")
+    #
+    # API Call:https://openweathermap.org/api/air-pollution
+    #
     def get_air_pollution_data_forecast(
         self,
         latitude: float = None,
@@ -984,6 +1017,9 @@ class OpenWeatherMapLibrary:
         return self.__make_request(url=url, payload=payload)
 
     @keyword("Get Air Pollution Data History")
+    #
+    # API Call:https://openweathermap.org/api/air-pollution
+    #
     def get_air_pollution_data_history(
         self,
         latitude: float = None,
