@@ -58,9 +58,9 @@ class OpenWeatherMapLibrary:
     DEFAULT_LANGUAGE = None
     DEFAULT_EXCLUDE = None
     DEFAULT_NUMBER_OF_RESULTS = None
-    DEFAULT_DATETIME_START = None
-    DEFAULT_DATETIME_END = None
-    DEFAULT_DATETIME = None
+    DEFAULT_DT_START = None
+    DEFAULT_DT_END = None
+    DEFAULT_DT = None
 
     # Class-internal parameters
     __owm_latitude = None
@@ -71,9 +71,9 @@ class OpenWeatherMapLibrary:
     __owm_language = None
     __owm_exclude = None
     __owm_number = None
-    __owm_datetime_start = None
-    __owm_datetime_end = None
-    __owm_datetime = None
+    __owm_dt_start = None
+    __owm_dt_end = None
+    __owm_dt = None
 
     # constructor
     def __init__(
@@ -86,9 +86,9 @@ class OpenWeatherMapLibrary:
         owm_language: str = DEFAULT_LANGUAGE,
         owm_exclude: str = DEFAULT_EXCLUDE,
         owm_number: int = DEFAULT_NUMBER_OF_RESULTS,
-        owm_datetime_start: int = DEFAULT_DATETIME_START,
-        owm_datetime_end: int = DEFAULT_DATETIME_END,
-        owm_datetime: int = DEFAULT_DATETIME,
+        owm_dt_start: int = DEFAULT_DT_START,
+        owm_dt_end: int = DEFAULT_DT_END,
+        owm_dt: int = DEFAULT_DT,
     ):
         self.__owm_latitude = owm_latitude
         self.__owm_longitude = owm_longitude
@@ -98,9 +98,9 @@ class OpenWeatherMapLibrary:
         self.__owm_exclude = owm_exclude
         self.__owm_output_format = own_output_format
         self.__owm_unit_format = owm_unit_format
-        self.__owm_datetime_start = owm_datetime_start
-        self.__owm_datetime_end = owm_datetime_end
-        self.__owm_datetime = owm_datetime
+        self.__owm_dt_start = owm_dt_start
+        self.__owm_dt_end = owm_dt_end
+        self.__owm_dt = owm_dt
 
     # Python "Getter" methods
     #
@@ -140,16 +140,16 @@ class OpenWeatherMapLibrary:
         return self.__owm_unit_format
 
     @property
-    def owm_datetime_start(self):
-        return self.__owm_datetime_start
+    def owm_dt_start(self):
+        return self.__owm_dt_start
 
     @property
-    def owm_datetime_end(self):
-        return self.__owm_datetime_end
+    def owm_dt_end(self):
+        return self.__owm_dt_end
 
     @property
-    def owm_datetime(self):
-        return self.__owm_datetime
+    def owm_dt(self):
+        return self.__owm_dt
 
     # Python "Setter" methods
     #
@@ -203,23 +203,23 @@ class OpenWeatherMapLibrary:
             owm_unit_format=owm_unit_format
         )
 
-    @owm_datetime_start.setter
-    def owm_datetime_start(self, owm_datetime_start: str):
-        if not owm_datetime_start:
-            raise ValueError("No datetime-start value has been specified")
-        self.__owm_datetime_start = owm_datetime_start
+    @owm_dt_start.setter
+    def owm_dt_start(self, owm_dt_start: str):
+        if not owm_dt_start:
+            raise ValueError("No dt-start value has been specified")
+        self.__owm_dt_start = owm_dt_start
 
-    @owm_datetime_end.setter
-    def owm_datetime_end(self, owm_datetime_end: str):
-        if not owm_datetime_end:
-            raise ValueError("No datetime-end value has been specified")
-        self.__owm_datetime_end = owm_datetime_end
+    @owm_dt_end.setter
+    def owm_dt_end(self, owm_dt_end: str):
+        if not owm_dt_end:
+            raise ValueError("No dt-end value has been specified")
+        self.__owm_dt_end = owm_dt_end
 
-    @owm_datetime.setter
-    def owm_datetime(self, owm_datetime: str):
-        if not owm_datetime:
-            raise ValueError("No datetime value has been specified")
-        self.__owm_datetime = owm_datetime
+    @owm_dt.setter
+    def owm_dt(self, owm_dt: str):
+        if not owm_dt:
+            raise ValueError("No dt value has been specified")
+        self.__owm_dt = owm_dt
 
     # Python class validation methods
     @not_keyword
@@ -335,16 +335,16 @@ class OpenWeatherMapLibrary:
         return self.owm_unit_format
 
     @keyword("Get OpenWeatherMap Datetime Start")
-    def get_owm_datetime_start(self):
-        return self.owm_datetime_start
+    def get_owm_dt_start(self):
+        return self.owm_dt_start
 
     @keyword("Get OpenWeatherMap Datetime End")
-    def get_owm_datetime_end(self):
-        return self.owm_datetime_end
+    def get_owm_dt_end(self):
+        return self.owm_dt_end
 
     @keyword("Get OpenWeatherMap Datetime")
-    def get_owm_datetime(self):
-        return self.owm_datetime
+    def get_owm_dt(self):
+        return self.owm_dt
 
     #
     # Robot-specific "setter" keywords
@@ -390,19 +390,19 @@ class OpenWeatherMapLibrary:
         self.owm_unit_format = owm_unit_format
 
     @keyword("Set OpenWeatherMap Datetime Start")
-    def set_owm_datetime_start(self, owm_datetime_start: int = None):
+    def set_owm_dt_start(self, owm_dt_start: int = None):
         logger.debug(msg="Setting OWM Datetime Start")
-        self.owm_datetime_start = owm_datetime_start
+        self.owm_dt_start = owm_dt_start
 
     @keyword("Set OpenWeatherMap Datetime End")
-    def set_owm_datetime_end(self, owm_datetime_end: int = None):
+    def set_owm_dt_end(self, owm_dt_end: int = None):
         logger.debug(msg="Setting OWM Datetime End")
-        self.owm_datetime_end = owm_datetime_end
+        self.owm_dt_end = owm_dt_end
 
     @keyword("Set OpenWeatherMap Datetime")
-    def set_owm_datetime(self, owm_datetime: int = None):
+    def set_owm_dt(self, owm_dt: int = None):
         logger.debug(msg="Setting OWM Datetime")
-        self.owm_datetime = owm_datetime
+        self.owm_dt = owm_dt
 
     #
     # Robot Framework Action Keywords for OpenWeatherMap
@@ -443,17 +443,18 @@ class OpenWeatherMapLibrary:
 
         return self.__make_request(url=url, payload=payload)
 
-    @keyword("Get Hourly Forecasts 4 Days")
+    @keyword("Get Hourly Forecast 4 Days")
     #
     # API Call:https://openweathermap.org/api/hourly-forecast
     #
-    def get_hourly_forecasts_four_days(
+    def get_hourly_forecast_four_days(
         self,
         latitude: float = None,
         longitude: float = None,
         apikey: str = None,
         output_format: str = None,
         language: str = None,
+        number: int = None,
     ):
         # perform pre-sanity checks for the optional parameters
         output_format = self.__owm_output_format_check(owm_output_format=output_format)
@@ -594,7 +595,7 @@ class OpenWeatherMapLibrary:
     # API Call:https://openweathermap.org/api/solar-radiation
     #
     def get_current_solar_radiation(
-        self, latitude: float = None, longitude: float = None, apikey: float = None
+        self, latitude: float = None, longitude: float = None, apikey: str = None
     ):
         __url_path = "/2.5/solar_radiation"
         url = self.__get_base_api(api_type=OpenWeatherMapApiType.API) + __url_path
@@ -642,8 +643,8 @@ class OpenWeatherMapLibrary:
         latitude: float = None,
         longitude: float = None,
         apikey: str = None,
-        start: int = None,
-        end: int = None,
+        dt_start: int = None,
+        dt_end: int = None,
     ):
         __url_path = "/2.5/solar_radiation/history"
         url = self.__get_base_api(api_type=OpenWeatherMapApiType.API) + __url_path
@@ -656,8 +657,8 @@ class OpenWeatherMapLibrary:
         payload = self.__add_parameter(name="lat", param1=self.get_owm_latitude(), param2=latitude, optional=False, payload=payload)
         payload = self.__add_parameter(name="lon", param1=self.get_owm_longitude(), param2=longitude, optional=False, payload=payload)
         payload = self.__add_parameter(name="appid", param1=self.get_owm_apikey(), param2=apikey, optional=False, payload=payload)
-        payload = self.__add_parameter(name="start", param1=self.get_owm_datetime_start(), param2=start, optional=False, payload=payload)
-        payload = self.__add_parameter(name="end", param1=self.get_owm_datetime_end(), param2=end, optional=False, payload=payload)
+        payload = self.__add_parameter(name="start", param1=self.get_owm_dt_start(), param2=dt_start, optional=False, payload=payload)
+        payload = self.__add_parameter(name="end", param1=self.get_owm_dt_end(), param2=dt_end, optional=False, payload=payload)
         # fmt: on
 
         return self.__make_request(url=url, payload=payload)
@@ -670,7 +671,7 @@ class OpenWeatherMapLibrary:
         self,
         latitude: float = None,
         longitude: float = None,
-        str: float = None,
+        apikey: str = None,
         number: int = None,
         output_format: str = None,
         unit_format: str = None,
@@ -756,8 +757,8 @@ class OpenWeatherMapLibrary:
         latitude: float = None,
         longitude: float = None,
         apikey: str = None,
-        start: int = None,
-        end: int = None,
+        dt_start: int = None,
+        dt_end: int = None,
     ):
         __url_path = "/2.5/air_pollution/history"
         url = self.__get_base_api(api_type=OpenWeatherMapApiType.API)
@@ -770,9 +771,56 @@ class OpenWeatherMapLibrary:
         payload = self.__add_parameter(name="lat", param1=self.get_owm_latitude(), param2=latitude, optional=False, payload=payload)
         payload = self.__add_parameter(name="lon", param1=self.get_owm_longitude(), param2=longitude, optional=False, payload=payload)
         payload = self.__add_parameter(name="appid", param1=self.get_owm_apikey(), param2=apikey, optional=False, payload=payload)
+        payload = self.__add_parameter(name="start", param1=self.get_owm_dt_start(), param2=dt_start, optional=False, payload=payload)
+        payload = self.__add_parameter(name="end", param1=self.get_owm_dt_end(), param2=dt_end, optional=False, payload=payload)
         # fmt: on
 
         return self.__make_request(url=url, payload=payload)
+
+    @keyword("Get Road Risk Data")
+    #
+    # API Call:https://openweathermap.org/api/road-risk
+    #
+    def get_road_risk_data(
+        self,
+        latitude: float = None,
+        longitude: float = None,
+        apikey: str = None,
+        dt: int = None,
+    ):
+
+        __url_path = "/2.5/roadrisk"
+        url = self.__get_base_api(api_type=OpenWeatherMapApiType.API)
+
+        # Add mandatory / optional fields whereas present
+        # parameter payload dictionary
+        payload = {}
+        # fmt: off
+        payload = self.__add_parameter(name="appid", param1=self.get_owm_apikey(), param2=apikey, optional=False, payload=payload)
+        # fmt: on
+
+        # Unlike the other APIs, this API call expects to receive its data via request body
+        # So let's extract what we have and then build the body for our lat/lon/dt set
+
+        # Check/extract latitude
+        __lat = latitude if latitude else self.get_owm_latitude()
+        if not __lat:
+            raise ValueError("You did not provide any data for 'latitude'")
+
+        # Check/extract longitude
+        __lon = longitude if longitude else self.get_owm_longitude()
+        if not __lon:
+            raise ValueError("You did not provide any data for 'longitude'")
+
+        # Check/extract dt
+        __dt = dt if dt else self.get_owm_dt()
+        if not __dt:
+            raise ValueError("You did not provide any data for 'dt'")
+
+        # Build the request body
+        body_data = {"track": [{"lat": __lat, "lon": __lon, "dt": __dt}]}
+
+        return self.__make_request(url=url, payload=payload, data=body_data)
 
     @not_keyword
     def __get_base_api(self, api_type: Enum):
@@ -853,7 +901,7 @@ class OpenWeatherMapLibrary:
         return payload
 
     @not_keyword
-    def __make_request(self, url: str, payload: dict):
+    def __make_request(self, url: str, payload: dict, data: dict = None):
         """
         Issues a HTTP GET and returns the response code / body
         Parameters
@@ -869,17 +917,15 @@ class OpenWeatherMapLibrary:
         text: 'str'
             HTTP response body
         """
-        resp = requests.get(url=url, params=payload)
+        if data:
+            resp = requests.get(url=url, params=payload, data=data)
+        else:
+            resp = requests.get(url=url, params=payload)
         return resp.status_code, resp.text
 
 
 if __name__ == "__main__":
     apikey = os.getenv("OWM_API_KEY")
     a = OpenWeatherMapLibrary()
-    b = a.get_current_weather(
-        latitude=51,
-        longitude=8,
-        apikey=apikey,
-        output_format="xml",
-    )
+    b = a.get_road_risk_data(latitude=51, longitude=8, apikey=apikey, dt=1602702000)
     logger.info(b)

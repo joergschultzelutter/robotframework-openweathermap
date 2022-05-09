@@ -1,6 +1,6 @@
 *** Settings ***
-Library						OpenWeatherMapLibrary.py
-Library						OperatingSystem
+Library			OpenWeatherMapLibrary.py
+Library			OperatingSystem
 
 Suite Setup     Run My Suite Setup Tasks
 
@@ -109,7 +109,7 @@ Get Solar Radiation Forecast Test
 	Log To Console	    ${RESPONSE_BODY}
 
 Get Solar Radiation History Test
-	${RESPONSE_CODE}    ${RESPONSE_BODY}=	Get Current Solar Radiation 	latitude=${LAT}     longitude=${LON}	apikey=${APIKEY}    start=${DT_START}   end=${DT_END}
+	${RESPONSE_CODE}    ${RESPONSE_BODY}=	Get Solar Radiation History 	latitude=${LAT}     longitude=${LON}	apikey=${APIKEY}    dt_start=${DT_START}   dt_end=${DT_END}
 	Log To Console	    ${RESPONSE_CODE}
 	Log To Console	    ${RESPONSE_BODY}
 
@@ -124,20 +124,19 @@ Get Current Air Pollution Data Test
 	Log To Console	    ${RESPONSE_BODY}
 
 Get Air Pollution Data Forecast Test
-	${RESPONSE_CODE}    ${RESPONSE_BODY}=	Get Air Pollution Data Forecast Days 	latitude=${LAT}     longitude=${LON}	apikey=${APIKEY}
+	${RESPONSE_CODE}    ${RESPONSE_BODY}=	Get Air Pollution Data Forecast 	latitude=${LAT}     longitude=${LON}	apikey=${APIKEY}
 	Log To Console	    ${RESPONSE_CODE}
 	Log To Console	    ${RESPONSE_BODY}
 
 Get Air Pollution Data History Test
-	${RESPONSE_CODE}    ${RESPONSE_BODY}=	Get Air Pollution Data History 	latitude=${LAT}     longitude=${LON}	apikey=${APIKEY}    start=${DT_START}   end=${DT_END}
+	${RESPONSE_CODE}    ${RESPONSE_BODY}=	Get Air Pollution Data History 	latitude=${LAT}     longitude=${LON}	apikey=${APIKEY}    dt_start=${DT_START}   dt_end=${DT_END}
 	Log To Console	    ${RESPONSE_CODE}
 	Log To Console	    ${RESPONSE_BODY}
 
-
-
-
-
-
+Get Road Risk Data Test
+	${RESPONSE_CODE}    ${RESPONSE_BODY}=	Get Road Risk Data 	latitude=${LAT}     longitude=${LON}	apikey=${APIKEY}    dt=${DT_START}
+	Log To Console	    ${RESPONSE_CODE}
+	Log To Console	    ${RESPONSE_BODY}
 
 *** Keywords ***
 Run My Suite Setup Tasks
