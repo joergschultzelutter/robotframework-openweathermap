@@ -16,7 +16,7 @@ Prerequisites:
 
 The accompanying Robot Framework [test case](https://github.com/joergschultzelutter/robotframework-openweathermap/tests/library_checks.robot) relies on two requirements: 
 
-- [get](https://home.openweathermap.org/users/sign_up) an OpenWeatherMap API key (it's free)
+- [get an OpenWeatherMap API key](https://home.openweathermap.org/users/sign_up) (it's free)
 - create an environment variable ```OWM_API_KEY``` and assign the OpenWeatherMap API key to that variable
 
 ## Library usage and supported keywords
@@ -68,9 +68,9 @@ My first test case
 
 ### Action Robot Keywords supported by this library
 
-| Keyword| Description | Arguments     |
-|--------|-------------|---------------|
-|``abcd``| efgh        | ``ijkl``      |
+| Keyword  | Description | Arguments |
+|----------|-------------|-----------|
+| ``abcd`` | efgh        | ``ijkl``  |
 
 ## Known issues
 

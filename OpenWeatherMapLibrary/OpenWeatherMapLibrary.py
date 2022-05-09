@@ -23,6 +23,7 @@ from robot.api.deco import library, keyword, not_keyword
 from enum import Enum
 import re
 import logging
+import os
 
 logging.basicConfig(
     level=logging.DEBUG, format="%(asctime)s %(module)s -%(levelname)s- %(message)s"
@@ -182,8 +183,8 @@ class OpenWeatherMapLibrary:
             raise ValueError("Number of Results value needs to be greater than zero")
         self.__owm_number = owm_number
 
-    @owm_language.setter
-    def owm_language(self, owm_language: str):
+    @not_keyword
+    def __owm_language_check(self, owm_language: str):
         # fmt: off
         valid_languages = [
             "af", "al", "ar", "az",
@@ -201,68 +202,83 @@ class OpenWeatherMapLibrary:
         ]
         # fmt: on
 
-        if not owm_language:
-            raise ValueError("No language value has been specified")
-        owm_language = owm_language.lower()
-        if owm_language not in valid_languages:
-            raise ValueError(
-                f"Invalid language code specified; valid values: {valid_languages}"
-            )
+        if owm_language:
+            owm_language = owm_language.lower()
+            if owm_language not in valid_languages:
+                raise ValueError(
+                    f"Invalid language code specified; valid values: {valid_languages}"
+                )
 
-        # Language code convenience mapping
-        if owm_language == "cn":
-            owm_language = "zh_cn"
-        if owm_language == "tw":
-            owm_language = "zh_tw"
+            # Language code convenience mapping
+            if owm_language == "cn":
+                owm_language = "zh_cn"
+            if owm_language == "tw":
+                owm_language = "zh_tw"
 
-        self.__owm_language = owm_language
+        return owm_language
 
-    @owm_exclude.setter
-    def owm_exclude(self, owm_exclude: str):
+    @owm_language.setter
+    def owm_language(self, owm_language: str):
+        self.__owm_language = self.__owm_language_check(owm_language=owm_language)
+
+    @not_keyword
+    def __owm_exclude_check(self, owm_exclude):
         # 'excludes' value can contain 1..n comma-separated values
         # have a look at each one of them and check if we have
         # received something that looks valid
         valid_excludes = ["current", "minutely", "hourly", "daily", "alerts"]
-        if not owm_exclude:
-            raise ValueError("No exclude value has been specified")
+        if owm_exclude:
+            # lowercase our value and remove any potential spaces
+            owm_exclude = owm_exclude.lower().replace(" ", "")
 
-        # lowercase our value and remove any potential spaces
-        owm_exclude = owm_exclude.lower().replace(" ", "")
+            # Split it up with comma separator
+            excludes = owm_exclude.split(",")
 
-        # Split it up with comma separator
-        excludes = owm_exclude.split(",")
+            # Iterate through that list
+            for exclude in excludes:
+                if exclude not in valid_excludes:
+                    raise ValueError(
+                        f"Invalid output format specified; valid values: {valid_excludes}"
+                    )
+        return owm_exclude
 
-        # Iterate through that list
-        for exclude in excludes:
-            if exclude not in valid_excludes:
+    @owm_exclude.setter
+    def owm_exclude(self, owm_exclude: str):
+        self.__owm_exclude = self.__owm_exclude_check(owm_exclude=owm_exclude)
+
+    @not_keyword
+    def __owm_output_format_check(self, owm_output_format: str):
+        valid_formats = ["xml", "html", "json"]
+        if owm_output_format:
+            owm_output_format = owm_output_format.lower()
+            if owm_output_format not in valid_formats:
                 raise ValueError(
-                    f"Invalid output format specified; valid values: {valid_excludes}"
+                    f"Invalid output format specified; valid values: {valid_formats}"
                 )
-        self.__owm_exclude = owm_exclude
+        return owm_output_format
 
     @owm_output_format.setter
     def owm_output_format(self, owm_output_format: str):
-        valid_formats = ["xml", "html", "json"]
-        if not owm_output_format:
-            raise ValueError("No output format value has been specified")
-        owm_output_format = owm_output_format.lower()
-        if owm_output_format not in valid_formats:
-            raise ValueError(
-                f"Invalid output format specified; valid values: {valid_formats}"
-            )
-        self.__owm_output_format = owm_output_format
+        self.__owm_output_format = self.__owm_output_format_check(
+            owm_output_format=owm_output_format
+        )
+
+    @not_keyword
+    def __owm_unit_format_check(self, owm_unit_format: str):
+        valid_units = ["standard", "metric", "imperial"]
+        if owm_unit_format:
+            owm_unit_format = owm_unit_format.lower()
+            if owm_unit_format not in valid_units:
+                raise ValueError(
+                    f"Invalid unit format specified; valid values: {valid_units}"
+                )
+        return owm_unit_format
 
     @owm_unit_format.setter
     def owm_unit_format(self, owm_unit_format: str):
-        valid_units = ["standard", "metric", "imperial"]
-        if not owm_unit_format:
-            raise ValueError("No unit of measure value has been specified")
-        owm_unit_format = owm_unit_format.lower()
-        if owm_unit_format not in valid_units:
-            raise ValueError(
-                f"Invalid unit format specified; valid values: {valid_units}"
-            )
-        self.__owm_unit_format = owm_unit_format
+        self.__owm_unit_format = self.__owm_unit_format_check(
+            owm_unit_format=owm_unit_format
+        )
 
     @owm_datetime_start.setter
     def owm_datetime_start(self, owm_datetime_start: str):
@@ -403,6 +419,11 @@ class OpenWeatherMapLibrary:
         unit_format: str = None,
         language: str = None,
     ):
+        # perform pre-sanity checks for the optional parameter
+        output_format = self.__owm_output_format_check(owm_output_format=output_format)
+        unit_format = self.__owm_unit_format_check(owm_unit_format=unit_format)
+        language = self.__owm_language_check(owm_language=language)
+
         __url_path = "/2.5/weather"
         url = self.__get_base_api(api_type=OpenWeatherMapApiType.API) + __url_path
 
@@ -465,6 +486,10 @@ class OpenWeatherMapLibrary:
         unit_format: str = None,
         language: str = None,
     ):
+
+        # Check for valid input parameters
+        exclude = self.__owm_exclude_check(owm_exclude=exclude)
+
         __url_path = "/2.5/onecall"
         url = self.__get_base_api(api_type=OpenWeatherMapApiType.API) + __url_path
 
@@ -829,4 +854,12 @@ class OpenWeatherMapLibrary:
 
 
 if __name__ == "__main__":
-    pass
+    apikey = os.getenv("OWM_API_KEY")
+    a = OpenWeatherMapLibrary()
+    b = a.get_current_weather(
+        latitude=51,
+        longitude=8,
+        apikey=apikey,
+        output_format="xml",
+    )
+    logger.info(b)

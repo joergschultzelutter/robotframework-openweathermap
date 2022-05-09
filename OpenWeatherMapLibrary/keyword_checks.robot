@@ -44,7 +44,7 @@ Output Format Getter Setter
 	Should Be Equal			${VALUE1}	${VALUE2}
 
 Unit Format Getter Setter
-	Set Local Variable		${VALUE1}	metric	
+	Set Local Variable		${VALUE1}	metric
 	Set OpenWeatherMap Unit Format	${VALUE1}	
 	${VALUE2}=			Get OpenWeatherMap Unit Format
 	Should Be Equal			${VALUE1}	${VALUE2}
@@ -72,6 +72,13 @@ Datetime Getter Setter
 	Set OpenWeatherMap Datetime	${VALUE1}	
 	${VALUE2}=			Get OpenWeatherMap Datetime
 	Should Be Equal			${VALUE1}	${VALUE2}
+
+Get Current Weather Test
+	${VALUE1}=			Convert To Number	51.0
+	${VALUE2}=			Convert To Number	8.0
+	${RESPONSE_CODE}  ${RESPONSE_BODY}=	Get Current Weather 	latitude=${VALUE1}	longitude=${VALUE2}	apikey=${APIKEY}    output_format=xml
+	Log To Console	  ${RESPONSE_CODE}
+	Log To Console	  ${RESPONSE_BODY}
 
 Get OneCall Forecast Test
 	${VALUE1}=			Convert To Number	51.0		
