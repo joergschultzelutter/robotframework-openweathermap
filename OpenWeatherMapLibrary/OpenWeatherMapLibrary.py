@@ -183,6 +183,88 @@ class OpenWeatherMapLibrary:
             raise ValueError("Number of Results value needs to be greater than zero")
         self.__owm_number = owm_number
 
+    @owm_language.setter
+    def owm_language(self, owm_language: str):
+        self.__owm_language = self.__owm_language_check(owm_language=owm_language)
+
+    @owm_exclude.setter
+    def owm_exclude(self, owm_exclude: str):
+        self.__owm_exclude = self.__owm_exclude_check(owm_exclude=owm_exclude)
+
+    @owm_output_format.setter
+    def owm_output_format(self, owm_output_format: str):
+        self.__owm_output_format = self.__owm_output_format_check(
+            owm_output_format=owm_output_format
+        )
+
+    @owm_unit_format.setter
+    def owm_unit_format(self, owm_unit_format: str):
+        self.__owm_unit_format = self.__owm_unit_format_check(
+            owm_unit_format=owm_unit_format
+        )
+
+    @owm_datetime_start.setter
+    def owm_datetime_start(self, owm_datetime_start: str):
+        if not owm_datetime_start:
+            raise ValueError("No datetime-start value has been specified")
+        self.__owm_datetime_start = owm_datetime_start
+
+    @owm_datetime_end.setter
+    def owm_datetime_end(self, owm_datetime_end: str):
+        if not owm_datetime_end:
+            raise ValueError("No datetime-end value has been specified")
+        self.__owm_datetime_end = owm_datetime_end
+
+    @owm_datetime.setter
+    def owm_datetime(self, owm_datetime: str):
+        if not owm_datetime:
+            raise ValueError("No datetime value has been specified")
+        self.__owm_datetime = owm_datetime
+
+    # Python class validation methods
+    @not_keyword
+    def __owm_unit_format_check(self, owm_unit_format: str):
+        valid_units = ["standard", "metric", "imperial"]
+        if owm_unit_format:
+            owm_unit_format = owm_unit_format.lower()
+            if owm_unit_format not in valid_units:
+                raise ValueError(
+                    f"Invalid unit format specified; valid values: {valid_units}"
+                )
+        return owm_unit_format
+
+    @not_keyword
+    def __owm_output_format_check(self, owm_output_format: str):
+        valid_formats = ["xml", "html", "json"]
+        if owm_output_format:
+            owm_output_format = owm_output_format.lower()
+            if owm_output_format not in valid_formats:
+                raise ValueError(
+                    f"Invalid output format specified; valid values: {valid_formats}"
+                )
+        return owm_output_format
+
+    @not_keyword
+    def __owm_exclude_check(self, owm_exclude):
+        # 'excludes' value can contain 1..n comma-separated values
+        # have a look at each one of them and check if we have
+        # received something that looks valid
+        valid_excludes = ["current", "minutely", "hourly", "daily", "alerts"]
+        if owm_exclude:
+            # lowercase our value and remove any potential spaces
+            owm_exclude = owm_exclude.lower().replace(" ", "")
+
+            # Split it up with comma separator
+            excludes = owm_exclude.split(",")
+
+            # Iterate through that list
+            for exclude in excludes:
+                if exclude not in valid_excludes:
+                    raise ValueError(
+                        f"Invalid output format specified; valid values: {valid_excludes}"
+                    )
+        return owm_exclude
+
     @not_keyword
     def __owm_language_check(self, owm_language: str):
         # fmt: off
@@ -216,87 +298,6 @@ class OpenWeatherMapLibrary:
                 owm_language = "zh_tw"
 
         return owm_language
-
-    @owm_language.setter
-    def owm_language(self, owm_language: str):
-        self.__owm_language = self.__owm_language_check(owm_language=owm_language)
-
-    @not_keyword
-    def __owm_exclude_check(self, owm_exclude):
-        # 'excludes' value can contain 1..n comma-separated values
-        # have a look at each one of them and check if we have
-        # received something that looks valid
-        valid_excludes = ["current", "minutely", "hourly", "daily", "alerts"]
-        if owm_exclude:
-            # lowercase our value and remove any potential spaces
-            owm_exclude = owm_exclude.lower().replace(" ", "")
-
-            # Split it up with comma separator
-            excludes = owm_exclude.split(",")
-
-            # Iterate through that list
-            for exclude in excludes:
-                if exclude not in valid_excludes:
-                    raise ValueError(
-                        f"Invalid output format specified; valid values: {valid_excludes}"
-                    )
-        return owm_exclude
-
-    @owm_exclude.setter
-    def owm_exclude(self, owm_exclude: str):
-        self.__owm_exclude = self.__owm_exclude_check(owm_exclude=owm_exclude)
-
-    @not_keyword
-    def __owm_output_format_check(self, owm_output_format: str):
-        valid_formats = ["xml", "html", "json"]
-        if owm_output_format:
-            owm_output_format = owm_output_format.lower()
-            if owm_output_format not in valid_formats:
-                raise ValueError(
-                    f"Invalid output format specified; valid values: {valid_formats}"
-                )
-        return owm_output_format
-
-    @owm_output_format.setter
-    def owm_output_format(self, owm_output_format: str):
-        self.__owm_output_format = self.__owm_output_format_check(
-            owm_output_format=owm_output_format
-        )
-
-    @not_keyword
-    def __owm_unit_format_check(self, owm_unit_format: str):
-        valid_units = ["standard", "metric", "imperial"]
-        if owm_unit_format:
-            owm_unit_format = owm_unit_format.lower()
-            if owm_unit_format not in valid_units:
-                raise ValueError(
-                    f"Invalid unit format specified; valid values: {valid_units}"
-                )
-        return owm_unit_format
-
-    @owm_unit_format.setter
-    def owm_unit_format(self, owm_unit_format: str):
-        self.__owm_unit_format = self.__owm_unit_format_check(
-            owm_unit_format=owm_unit_format
-        )
-
-    @owm_datetime_start.setter
-    def owm_datetime_start(self, owm_datetime_start: str):
-        if not owm_datetime_start:
-            raise ValueError("No datetime-start value has been specified")
-        self.__owm_datetime_start = owm_datetime_start
-
-    @owm_datetime_end.setter
-    def owm_datetime_end(self, owm_datetime_end: str):
-        if not owm_datetime_end:
-            raise ValueError("No datetime-end value has been specified")
-        self.__owm_datetime_end = owm_datetime_end
-
-    @owm_datetime.setter
-    def owm_datetime(self, owm_datetime: str):
-        if not owm_datetime:
-            raise ValueError("No datetime value has been specified")
-        self.__owm_datetime = owm_datetime
 
     #
     # Robot-specific "getter" keywords
@@ -703,7 +704,7 @@ class OpenWeatherMapLibrary:
     #
     # API Call:https://openweathermap.org/api/air-pollution
     #
-    def get_air_pollution_data(
+    def get_current_air_pollution_data(
         self, latitude: float = None, longitude: float = None, apikey: str = None
     ):
         __url_path = "/2.5/air_pollution/forecast"

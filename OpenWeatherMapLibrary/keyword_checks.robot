@@ -2,16 +2,16 @@
 Library						OpenWeatherMapLibrary.py
 Library						OperatingSystem
 
-Suite Setup	Get API Access Key
+Suite Setup     Run My Suite Setup Tasks
 
 *** Variables ***
 
 *** Test Cases ***
 Latitude Getter Setter
-	${VALUE1}=			Convert To Number	1.234	
-	Set OpenWeatherMap Latitude	${VALUE1}	
-	${VALUE2}=			Get OpenWeatherMap Latitude
-	Should Be Equal			${VALUE1}	${VALUE2}
+	${VALUE1}=  Convert To Number	1.234
+	Set OpenWeatherMap Latitude	    ${VALUE1}
+	${VALUE2}=	Get OpenWeatherMap Latitude
+	Should Be Equal	${VALUE1}	${VALUE2}
 
 Longitude Getter Setter
 	${VALUE1}=			Convert To Number	5.678	
@@ -74,21 +74,94 @@ Datetime Getter Setter
 	Should Be Equal			${VALUE1}	${VALUE2}
 
 Get Current Weather Test
-	${VALUE1}=			Convert To Number	51.0
-	${VALUE2}=			Convert To Number	8.0
-	${RESPONSE_CODE}  ${RESPONSE_BODY}=	Get Current Weather 	latitude=${VALUE1}	longitude=${VALUE2}	apikey=${APIKEY}    output_format=xml
-	Log To Console	  ${RESPONSE_CODE}
-	Log To Console	  ${RESPONSE_BODY}
+	${RESPONSE_CODE}    ${RESPONSE_BODY}=	Get Current Weather 	latitude=${LAT}     longitude=${LON}	apikey=${APIKEY}
+	Log To Console	    ${RESPONSE_CODE}
+	Log To Console	    ${RESPONSE_BODY}
+
+Get Hourly Forecast 4 Days Test
+	${RESPONSE_CODE}    ${RESPONSE_BODY}=	Get Hourly Forecast 4 Days 	latitude=${LON}     longitude=${LAT}	apikey=${APIKEY}
+	Log To Console	    ${RESPONSE_CODE}
+	Log To Console	    ${RESPONSE_BODY}
 
 Get OneCall Forecast Test
-	${VALUE1}=			Convert To Number	51.0		
-	${VALUE2}=			Convert To Number	8.0		
-	${RESPONSE_CODE}  ${RESPONSE_BODY}=	Get OneCall Forecast	latitude=${VALUE1}	longitude=${VALUE2}	apikey=${APIKEY}
-	Log To Console	  ${RESPONSE_CODE}
-	Log To Console	  ${RESPONSE_BODY}
+	${RESPONSE_CODE}    ${RESPONSE_BODY}=	Get OneCall Forecast	latitude=${LAT}     longitude=${LON}	apikey=${APIKEY}
+	Log To Console	    ${RESPONSE_CODE}
+	Log To Console	    ${RESPONSE_BODY}
+
+Get Daily Forecasts 16 Days Test
+	${RESPONSE_CODE}    ${RESPONSE_BODY}=	Get Daily Forecasts 16 Days 	latitude=${LAT}     longitude=${LON}	apikey=${APIKEY}
+	Log To Console	    ${RESPONSE_CODE}
+	Log To Console	    ${RESPONSE_BODY}
+
+Get Climatic Forecast 30 Days Test
+	${RESPONSE_CODE}    ${RESPONSE_BODY}=	Get Climatic Forecast 30 Days 	latitude=${LAT}     longitude=${LON}	apikey=${APIKEY}
+	Log To Console	    ${RESPONSE_CODE}
+	Log To Console	    ${RESPONSE_BODY}
+
+Get Current Solar Radiation Test
+	${RESPONSE_CODE}    ${RESPONSE_BODY}=	Get Current Solar Radiation 	latitude=${LAT}     longitude=${LON}	apikey=${APIKEY}
+	Log To Console	    ${RESPONSE_CODE}
+	Log To Console	    ${RESPONSE_BODY}
+
+Get Solar Radiation Forecast Test
+	${RESPONSE_CODE}    ${RESPONSE_BODY}=	Get Solar Radiation Forecast 	latitude=${LAT}     longitude=${LON}	apikey=${APIKEY}
+	Log To Console	    ${RESPONSE_CODE}
+	Log To Console	    ${RESPONSE_BODY}
+
+Get Solar Radiation History Test
+	${RESPONSE_CODE}    ${RESPONSE_BODY}=	Get Current Solar Radiation 	latitude=${LAT}     longitude=${LON}	apikey=${APIKEY}    start=${DT_START}   end=${DT_END}
+	Log To Console	    ${RESPONSE_CODE}
+	Log To Console	    ${RESPONSE_BODY}
+
+Get 5 Day 3 Hour Forecast Test
+	${RESPONSE_CODE}    ${RESPONSE_BODY}=	Get 5 Day 3 Hour Forecast 	latitude=${LAT}     longitude=${LON}	apikey=${APIKEY}
+	Log To Console	    ${RESPONSE_CODE}
+	Log To Console	    ${RESPONSE_BODY}
+
+Get Current Air Pollution Data Test
+	${RESPONSE_CODE}    ${RESPONSE_BODY}=	Get Current Air Pollution Data 	latitude=${LAT}     longitude=${LON}	apikey=${APIKEY}
+	Log To Console	    ${RESPONSE_CODE}
+	Log To Console	    ${RESPONSE_BODY}
+
+Get Air Pollution Data Forecast Test
+	${RESPONSE_CODE}    ${RESPONSE_BODY}=	Get Air Pollution Data Forecast Days 	latitude=${LAT}     longitude=${LON}	apikey=${APIKEY}
+	Log To Console	    ${RESPONSE_CODE}
+	Log To Console	    ${RESPONSE_BODY}
+
+Get Air Pollution Data History Test
+	${RESPONSE_CODE}    ${RESPONSE_BODY}=	Get Air Pollution Data History 	latitude=${LAT}     longitude=${LON}	apikey=${APIKEY}    start=${DT_START}   end=${DT_END}
+	Log To Console	    ${RESPONSE_CODE}
+	Log To Console	    ${RESPONSE_BODY}
+
+
+
+
+
+
 
 *** Keywords ***
+Run My Suite Setup Tasks
+    Get API Access Key
+    Define My Test Variables
+
 Get API Access Key
 	${APIKEY}=	Get Environment Variable	OWM_API_KEY
 	Should Not Be Equal	${APIKEY}	${None}
 	Set Suite Variable	${APIKEY}	${APIKEY}	
+
+Define My Test Variables
+    # Create my lat/lon default set ....
+    ${LAT}=                 Convert To Number       51.82798
+    ${LON}=                 Convert To Number       9.4455
+
+    # ... and elevate it to Global status
+    Set Global Variable     ${LAT}                  ${LAT}
+    Set Global Variable     ${LON}                  ${LON}
+
+    # Create a start/Stop datetime set ....
+    ${DT_START}=            Convert To Integer      1648771200
+    ${DT_END}=              Convert To Integer      1651363199
+
+    # ... and elevate it to Global status
+    Set Global Variable      ${DT_START}            ${DT_START}
+    Set Global Variable      ${DT_END}              ${DT_END}
