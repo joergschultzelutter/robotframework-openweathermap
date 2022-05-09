@@ -419,7 +419,7 @@ class OpenWeatherMapLibrary:
         unit_format: str = None,
         language: str = None,
     ):
-        # perform pre-sanity checks for the optional parameter
+        # perform pre-sanity checks for the optional parameters
         output_format = self.__owm_output_format_check(owm_output_format=output_format)
         unit_format = self.__owm_unit_format_check(owm_unit_format=unit_format)
         language = self.__owm_language_check(owm_language=language)
@@ -452,9 +452,12 @@ class OpenWeatherMapLibrary:
         longitude: float = None,
         apikey: str = None,
         output_format: str = None,
-        number: int = None,
         language: str = None,
     ):
+        # perform pre-sanity checks for the optional parameters
+        output_format = self.__owm_output_format_check(owm_output_format=output_format)
+        language = self.__owm_language_check(owm_language=language)
+
         __url_path = "/2.5/forecast/hourly"
         url = self.__get_base_api(api_type=OpenWeatherMapApiType.PRO) + __url_path
 
@@ -486,9 +489,10 @@ class OpenWeatherMapLibrary:
         unit_format: str = None,
         language: str = None,
     ):
-
-        # Check for valid input parameters
+        # perform pre-sanity checks for the optional parameters
         exclude = self.__owm_exclude_check(owm_exclude=exclude)
+        unit_format = self.__owm_unit_format_check(owm_unit_format=unit_format)
+        language = self.__owm_language_check(owm_language=language)
 
         __url_path = "/2.5/onecall"
         url = self.__get_base_api(api_type=OpenWeatherMapApiType.API) + __url_path
@@ -522,6 +526,11 @@ class OpenWeatherMapLibrary:
         unit_format: str = None,
         language: str = None,
     ):
+        # perform pre-sanity checks for the optional parameters
+        output_format = self.__owm_output_format_check(owm_output_format=output_format)
+        unit_format = self.__owm_unit_format_check(owm_unit_format=unit_format)
+        language = self.__owm_language_check(owm_language=language)
+
         __url_path = "/2.5/forecast/daily"
         url = self.__get_base_api(api_type=OpenWeatherMapApiType.API) + __url_path
 
@@ -555,6 +564,11 @@ class OpenWeatherMapLibrary:
         unit_format: str = None,
         language: str = None,
     ):
+        # perform pre-sanity checks for the optional parameters
+        output_format = self.__owm_output_format_check(owm_output_format=output_format)
+        unit_format = self.__owm_unit_format_check(owm_unit_format=unit_format)
+        language = self.__owm_language_check(owm_language=language)
+
         __url_path = "/2.5/forecast/climate"
         url = self.__get_base_api(api_type=OpenWeatherMapApiType.PRO) + __url_path
 
@@ -661,6 +675,11 @@ class OpenWeatherMapLibrary:
         unit_format: str = None,
         language: str = None,
     ):
+        # perform pre-sanity checks for the optional parameters
+        output_format = self.__owm_output_format_check(owm_output_format=output_format)
+        unit_format = self.__owm_unit_format_check(owm_unit_format=unit_format)
+        language = self.__owm_language_check(owm_language=language)
+
         __url_path = "/2.5/forecast"
         url = self.__get_base_api(api_type=OpenWeatherMapApiType.API)
 
