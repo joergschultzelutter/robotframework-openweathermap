@@ -805,14 +805,9 @@ class OpenWeatherMapLibrary:
         # Unlike the other OWM APIs, this API call expects to receive its data via request body
         # So let's extract the values from the original payload and then pop the values from the payload
         #
-        # Build the request body ...
-        body_data = {"track": [{"lat": payload["lat"], "lon": payload["lon"], "dt": payload["dt"]}]}
-        #
-        # ... and remove the values from the request payload
-        payload.pop("lat")
-        payload.pop("lon")
-        payload.pop("dt")
-
+        # Build the request body and remove the original entries from the payload element
+        body_data = {"track": [{"lat": payload.pop("lat"), "lon": payload.pop("lon"), "dt": payload.pop("dt")}]}
+  
         # Finally, send this request with a request body to the API
         return self.__make_request(url=url, payload=payload, data=body_data)
 
