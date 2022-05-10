@@ -73,17 +73,17 @@ You can use these optional Getter/Setter methods for setting your fixed default 
 
 | Keyword  | Description | Arguments |
 |----------|-------------|-----------|
-| ``Get``, ``Set OpenWeatherMap Latitude`` | Gets / Sets the latitude value        | ``latitude``  |
-| ``Get OpenWeatherMap Longitude``, ``Set OpenWeatherMap Longitude`` | Gets / Sets the longitude value        | ``longitude``  |
-| ``Get OpenWeatherMap API Key``, ``Set OpenWeatherMap API Key`` | Gets / Sets the OWM API Key        | ``apikey``  |
-| ``Get OpenWeatherMap Number Of Results``, ``Set OpenWeatherMap Number Of Results`` | Gets / Sets the max number of results (supported by some API calls)  | ``number``  |
-| ``Get OpenWeatherMap Language``, ``Set OpenWeatherMap Language`` | Gets / Sets the desired output language        | ``language``  |
-| ``Get OpenWeatherMap Longitude``, ``Set OpenWeatherMap Excludes`` | Gets / Sets the exclude(s) value. Separarate multiple values with a comma        | ``exclude``  |
-| ``Get OpenWeatherMap Output Format``, ``Set OpenWeatherMap Output Format`` | Gets / Sets the output format (e.g. ``json``)        | ``output_format``  |
-| ``Get OpenWeatherMap Unit Format``, ``Set OpenWeatherMap Unit Format`` | Gets / Sets the unit format (e.g. ``metric``)        | ``unit_format``  |
-| ``Get OpenWeatherMap Datetime Start``, ``Set OpenWeatherMap Datetime Start`` | Gets / Sets the start datetime for date ranges        | ``dt_start``  |
-| ``Get OpenWeatherMap Datetime End``, ``Set OpenWeatherMap Datetime End`` | Gets / Sets the end datetime for date ranges        | ``dt_end``  |
-| ``Get OpenWeatherMap Datetime``, ``Set OpenWeatherMap Datetime`` | Gets / Sets a single point in time        | ``dt``  |
+| ``Get``/``Set OpenWeatherMap Latitude`` | Gets / Sets the latitude value        | ``latitude``  |
+| ``Get``/``Set OpenWeatherMap Longitude`` | Gets / Sets the longitude value        | ``longitude``  |
+| ``Get``/``Set OpenWeatherMap API Key`` | Gets / Sets the OWM API Key        | ``apikey``  |
+| ``Get``/``Set OpenWeatherMap Number Of Results`` | Gets / Sets the max number of results (supported by some API calls)  | ``number``  |
+| ``Get``/``Set OpenWeatherMap Language`` | Gets / Sets the desired output language        | ``language``  |
+| ``Get``/``Set OpenWeatherMap Excludes`` | Gets / Sets the exclude(s) value. Separarate multiple values with a comma        | ``exclude``  |
+| ``Get``/``Set OpenWeatherMap Output Format`` | Gets / Sets the output format (e.g. ``json``)        | ``output_format``  |
+| ``Get``/``Set OpenWeatherMap Unit Format`` | Gets / Sets the unit format (e.g. ``metric``)        | ``unit_format``  |
+| ``Get``/``Set OpenWeatherMap Datetime Start`` | Gets / Sets the start datetime for date ranges        | ``dt_start``  |
+| ``Get``/``Set OpenWeatherMap Datetime End`` | Gets / Sets the end datetime for date ranges        | ``dt_end``  |
+| ``Get``/``Set OpenWeatherMap Datetime`` | Gets / Sets a single point in time        | ``dt``  |
 
 ## Known issues
 
