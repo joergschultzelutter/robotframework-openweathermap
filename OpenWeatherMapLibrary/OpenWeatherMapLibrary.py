@@ -796,30 +796,24 @@ class OpenWeatherMapLibrary:
         # parameter payload dictionary
         payload = {}
         # fmt: off
+        payload = self.__add_parameter(name="lat", param1=self.get_owm_latitude(), param2=latitude, optional=False, payload=payload)
+        payload = self.__add_parameter(name="lon", param1=self.get_owm_longitude(), param2=longitude, optional=False, payload=payload)
         payload = self.__add_parameter(name="appid", param1=self.get_owm_apikey(), param2=apikey, optional=False, payload=payload)
+        payload = self.__add_parameter(name="dt", param1=self.get_owm_dt(), param2=dt, optional=False, payload=payload)
         # fmt: on
 
-        # Unlike the other APIs, this API call expects to receive its data via request body
-        # So let's extract what we have and then build the body for our lat/lon/dt set
+        # Unlike the other OWM APIs, this API call expects to receive its data via request body
+        # So let's extract the values from the original payload and then pop the values from the payload
+        #
+        # Build the request body ...
+        body_data = {"track": [{"lat": payload["lat"], "lon": payload["lon"], "dt": payload["dt"]}]}
+        #
+        # ... and remove the values from the request payload
+        payload.pop("lat")
+        payload.pop("lon")
+        payload.pop("dt")
 
-        # Check/extract latitude
-        __lat = latitude if latitude else self.get_owm_latitude()
-        if not __lat:
-            raise ValueError("You did not provide any data for 'latitude'")
-
-        # Check/extract longitude
-        __lon = longitude if longitude else self.get_owm_longitude()
-        if not __lon:
-            raise ValueError("You did not provide any data for 'longitude'")
-
-        # Check/extract dt
-        __dt = dt if dt else self.get_owm_dt()
-        if not __dt:
-            raise ValueError("You did not provide any data for 'dt'")
-
-        # Build the request body
-        body_data = {"track": [{"lat": __lat, "lon": __lon, "dt": __dt}]}
-
+        # Finally, send this request with a request body to the API
         return self.__make_request(url=url, payload=payload, data=body_data)
 
     @not_keyword
