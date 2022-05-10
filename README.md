@@ -76,9 +76,9 @@ You can use these optional Getter/Setter methods for setting your fixed default 
 | ``Get``/``Set OpenWeatherMap Latitude`` | Gets / Sets the latitude value        | ``latitude``  |
 | ``Get``/``Set OpenWeatherMap Longitude`` | Gets / Sets the longitude value        | ``longitude``  |
 | ``Get``/``Set OpenWeatherMap API Key`` | Gets / Sets the OWM API Key        | ``apikey``  |
-| ``Get``/``Set OpenWeatherMap Number Of Results`` | Gets / Sets the max number of results (supported by some API calls)  | ``number``  |
+| ``Get``/``Set OpenWeatherMap Number Of Results`` | Gets / Sets the max number of results  | ``number``  |
 | ``Get``/``Set OpenWeatherMap Language`` | Gets / Sets the desired output language        | ``language``  |
-| ``Get``/``Set OpenWeatherMap Excludes`` | Gets / Sets the exclude(s) value. Separarate multiple values with a comma        | ``exclude``  |
+| ``Get``/``Set OpenWeatherMap Excludes`` | Gets / Sets the exclude(s) value.<br /> Separarate multiple values with a comma        | ``exclude``  |
 | ``Get``/``Set OpenWeatherMap Output Format`` | Gets / Sets the output format (e.g. ``json``)        | ``output_format``  |
 | ``Get``/``Set OpenWeatherMap Unit Format`` | Gets / Sets the unit format (e.g. ``metric``)        | ``unit_format``  |
 | ``Get``/``Set OpenWeatherMap Datetime Start`` | Gets / Sets the start datetime for date ranges        | ``dt_start``  |
