@@ -14,7 +14,7 @@ The easiest way is to install this package is from pypi:
 
 Prerequisites:
 
-The accompanying Robot Framework [test case](https://github.com/joergschultzelutter/robotframework-openweathermap/tests/library_checks.robot) relies on two requirements: 
+The accompanying Robot Framework [test file](https://github.com/joergschultzelutter/robotframework-openweathermap/tests/library_checks.robot) relies on two requirements: 
 
 - [get an OpenWeatherMap API key](https://home.openweathermap.org/users/sign_up) (it's free)
 - create an environment variable ```OWM_API_KEY``` and assign the OpenWeatherMap API key to that variable
@@ -32,7 +32,7 @@ The following rules apply:
 ```robot
 Get Current Weather latitude=....
 ```
-- A keyword's parameter value has priority over the ```Setter``` value. This means that if you use ```Set OpenWeathermap Latitude  10``` and ```Get Current Weather  latitude=20```, the value will be ```20```  
+- A keyword's parameter value has priority over the ```Setter``` value. This means that if you use ```Set OpenWeathermap Latitude  10``` and ```Get Current Weather  latitude=20```, the value from the OWK Keyword will supersede the ``Setter`` keyword and a value of ```20``` is going to be used.  
 
 ### Options for setting the parameter values
 
