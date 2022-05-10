@@ -61,7 +61,9 @@ My first test case
 ```
 
 #### Option 3 - Use Robot Keywords
-```Set OpenWeatherMap Latitude   latitude=51.82798```
+```robot
+Set OpenWeatherMap Latitude   latitude=51.82798
+```
 
 ### Generic Getter / Setter Robot Keywords supported by this library
 
