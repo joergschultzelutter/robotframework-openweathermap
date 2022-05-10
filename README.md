@@ -66,11 +66,24 @@ My first test case
 
 
 
-### Action Robot Keywords supported by this library
+### Generic Getter / Setter Robot Keywords supported by this library
+
+You can use these optional Getter/Setter methods for setting your fixed default values. If you specify the same parameter as part of the actual API call, the value specified with that API call supersedes these generic values.
+
 
 | Keyword  | Description | Arguments |
 |----------|-------------|-----------|
-| ``abcd`` | efgh        | ``ijkl``  |
+| ``Get``, ``Set OpenWeatherMap Latitude`` | Gets / Sets the latitude value        | ``latitude``  |
+| ``Get OpenWeatherMap Longitude``, ``Set OpenWeatherMap Longitude`` | Gets / Sets the longitude value        | ``longitude``  |
+| ``Get OpenWeatherMap API Key``, ``Set OpenWeatherMap API Key`` | Gets / Sets the OWM API Key        | ``apikey``  |
+| ``Get OpenWeatherMap Number Of Results``, ``Set OpenWeatherMap Number Of Results`` | Gets / Sets the max number of results (supported by some API calls)  | ``number``  |
+| ``Get OpenWeatherMap Language``, ``Set OpenWeatherMap Language`` | Gets / Sets the desired output language        | ``language``  |
+| ``Get OpenWeatherMap Longitude``, ``Set OpenWeatherMap Excludes`` | Gets / Sets the exclude(s) value. Separarate multiple values with a comma        | ``exclude``  |
+| ``Get OpenWeatherMap Output Format``, ``Set OpenWeatherMap Output Format`` | Gets / Sets the output format (e.g. ``json``)        | ``output_format``  |
+| ``Get OpenWeatherMap Unit Format``, ``Set OpenWeatherMap Unit Format`` | Gets / Sets the unit format (e.g. ``metric``)        | ``unit_format``  |
+| ``Get OpenWeatherMap Datetime Start``, ``Set OpenWeatherMap Datetime Start`` | Gets / Sets the start datetime for date ranges        | ``dt_start``  |
+| ``Get OpenWeatherMap Datetime End``, ``Set OpenWeatherMap Datetime End`` | Gets / Sets the end datetime for date ranges        | ``dt_end``  |
+| ``Get OpenWeatherMap Datetime``, ``Set OpenWeatherMap Datetime`` | Gets / Sets a single point in time        | ``dt``  |
 
 ## Known issues
 
