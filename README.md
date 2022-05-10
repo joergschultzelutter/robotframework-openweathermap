@@ -90,7 +90,7 @@ Please note that some of these keywords require a paid OpenWeatherMap subscripti
 
 | Keyword | Description | Mandatory<br />parameters | Optional<br />parameters | Comments |
 | ------- | ----------- | -------------------- | ------------------- | -------- |
-| [Get Current Weather](https://openweathermap.org/current) | Access current weather data for any location on<br /> Earth including over 200,000 cities | ``latitude``<br />``longitude``<br />``apikey``|``output_format``<br />``unit_format``<br />``language`` | | 
+| [Get Current Weather](https://openweathermap.org/current) | Access current weather data for any location on Earth<br /> including over 200,000 cities | ``latitude``<br />``longitude``<br />``apikey``|``output_format``<br />``unit_format``<br />``language`` | | 
 | [Get Hourly Forecast 4 Days](https://openweathermap.org/api/hourly-forecast) | Hourly forecast for 4 days (96 timestamps) | ``latitude``<br />``longitude``<br />``apikey``|``output_format``<br />``number``<br />``language`` | ``output_format`` supports response<br />data in JSON and XML formats |
 | [Get OneCall Forecast](https://openweathermap.org/api/one-call-api) | Current and forecast weather data | ``latitude``<br />``longitude``<br />``apikey``|``exclude``<br />``unit_format``<br />``language`` | |
 | [Get Daily Forecasts 16 Days](https://openweathermap.org/forecast16) | Daily Forecast 16 Days is available at any location on the globe. | ``latitude``<br />``longitude``<br />``apikey``|``number``<br />``unit_format``<br />``output_format``<br />``language`` | ``output_format`` supports response<br />data in JSON and XML formats |
