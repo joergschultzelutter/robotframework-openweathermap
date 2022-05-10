@@ -12,7 +12,7 @@ if __name__ == "__main__":
         raise ValueError("Did not receive version info from GitHub")
 
     setup(
-        name="robotframework-apprise",
+        name="robotframework-openweathermap",
         version=VERSION,
         description="Robot Framework keywords for the 'OpenWeatherMap' library",
         long_description=long_description,
