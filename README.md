@@ -91,7 +91,7 @@ Please note that some of these keywords require a paid OpenWeatherMap subscripti
 
 | Keyword | Description | Mandatory parameters | Optional parameters | Comments |
 | ------- | ----------- | -------------------- | ------------------- | -------- |
-| Get Current Weather | blah | ``latitude``<br />``longitude``<br />``apikey``|``output_format``<br />``unit_format``<br />``language`` | | 
+| [Get Current Weather](https://openweathermap.org/current) | Access current weather data for any location on<br /> Earth including over 200,000 cities | ``latitude``<br />``longitude``<br />``apikey``|``output_format``<br />``unit_format``<br />``language`` | | 
 
 ## Known issues
 
