@@ -350,59 +350,59 @@ class OpenWeatherMapLibrary:
     # Robot-specific "setter" keywords
     #
     @keyword("Set OpenWeatherMap Latitude")
-    def set_owm_latitude(self, owm_latitude: float = None):
+    def set_owm_latitude(self, latitude: float = None):
         logger.debug(msg="Setting OWM Latitude")
-        self.owm_latitude = owm_latitude
+        self.owm_latitude = latitude
 
     @keyword("Set OpenWeatherMap Longitude")
-    def set_owm_longitude(self, owm_longitude: float = None):
+    def set_owm_longitude(self, longitude: float = None):
         logger.debug(msg="Setting OWM Longitude")
-        self.owm_longitude = owm_longitude
+        self.owm_longitude = longitude
 
     @keyword("Set OpenWeatherMap API Key")
-    def set_owm_apikey(self, owm_apikey: str = None):
+    def set_owm_apikey(self, apikey: str = None):
         logger.debug(msg="Setting OWM API Key")
-        self.owm_apikey = owm_apikey
+        self.owm_apikey = apikey
 
     @keyword("Set OpenWeatherMap Number Of Results")
-    def set_owm_number(self, owm_number: int = None):
+    def set_owm_number(self, number: int = None):
         logger.debug(msg="Setting OWM Number Of Results")
-        self.owm_number = owm_number
+        self.owm_number = number
 
     @keyword("Set OpenWeatherMap Language")
-    def set_owm_language(self, owm_language: str = None):
+    def set_owm_language(self, language: str = None):
         logger.debug(msg="Setting OWM Language")
-        self.owm_language = owm_language
+        self.owm_language = language
 
     @keyword("Set OpenWeatherMap Excludes")
-    def set_owm_excludes(self, owm_exclude: str = None):
+    def set_owm_excludes(self, exclude: str = None):
         logger.debug(msg="Setting OWM Excludes")
-        self.owm_exclude = owm_exclude
+        self.owm_exclude = exclude
 
     @keyword("Set OpenWeatherMap Output Format")
-    def set_owm_output_format(self, owm_output_format: str = None):
+    def set_owm_output_format(self, output_format: str = None):
         logger.debug(msg="Setting OWM Output Format")
-        self.owm_output_format = owm_output_format
+        self.owm_output_format = output_format
 
     @keyword("Set OpenWeatherMap Unit Format")
-    def set_owm_unit_format(self, owm_unit_format: str = None):
+    def set_owm_unit_format(self, unit_format: str = None):
         logger.debug(msg="Setting OWM Unit Format")
-        self.owm_unit_format = owm_unit_format
+        self.owm_unit_format = unit_format
 
     @keyword("Set OpenWeatherMap Datetime Start")
-    def set_owm_dt_start(self, owm_dt_start: int = None):
+    def set_owm_dt_start(self, dt_start: int = None):
         logger.debug(msg="Setting OWM Datetime Start")
-        self.owm_dt_start = owm_dt_start
+        self.owm_dt_start = dt_start
 
     @keyword("Set OpenWeatherMap Datetime End")
-    def set_owm_dt_end(self, owm_dt_end: int = None):
+    def set_owm_dt_end(self, dt_end: int = None):
         logger.debug(msg="Setting OWM Datetime End")
-        self.owm_dt_end = owm_dt_end
+        self.owm_dt_end = dt_end
 
     @keyword("Set OpenWeatherMap Datetime")
-    def set_owm_dt(self, owm_dt: int = None):
+    def set_owm_dt(self, dt: int = None):
         logger.debug(msg="Setting OWM Datetime")
-        self.owm_dt = owm_dt
+        self.owm_dt = dt
 
     #
     # Robot Framework Action Keywords for OpenWeatherMap
