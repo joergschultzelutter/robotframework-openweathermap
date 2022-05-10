@@ -85,5 +85,13 @@ You can use these optional Getter/Setter methods for setting your fixed default 
 | ``Get``/``Set OpenWeatherMap Datetime End`` | Gets / Sets the end datetime for date ranges        | ``dt_end``  | Unix timestamp |
 | ``Get``/``Set OpenWeatherMap Datetime`` | Gets / Sets a single point in time        | ``dt``  | Unix Timestamp |
 
+## OpenWeatherMap Keywords
+
+Please note that some of these keywords require a paid OpenWeatherMap subscription.
+
+| Keyword | Description | Mandatory parameters | Optional parameters | Comments |
+| ------- | ----------- | -------------------- | ------------------- | -------- |
+| Get Current Weather | blah | ``latitude``<br />``longitude``<br />``apikey``|``output_format``<br />``unit_format``<br />``language`` | | 
+
 ## Known issues
 
