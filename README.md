@@ -43,7 +43,7 @@ You can either specify all parameters during the initial setup of the library or
 ```robot
 *** Settings ***
 
-Library  OpenWeatherMapLibrary  12.0  34.0  ...
+Library  OpenWeatherMapLibrary  51.82798  9.4455  ...
 
 *** Test Cases ***
 My first test case
@@ -54,17 +54,14 @@ My first test case
 ```robot
 *** Settings ***
 
-Library  OpenWeatherMapLibrary  latitude=12.0  longitude=34.0  ...
+Library  OpenWeatherMapLibrary  latitude=51.82798  longitude=9.4455  ...
 
 *** Test Cases ***
 My first test case
 ```
 
 #### Option 3 - Use Robot Keywords
-
-
-
-
+```Set OpenWeatherMap Latitude   latitude=51.82798```
 
 ### Generic Getter / Setter Robot Keywords supported by this library
 
