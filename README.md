@@ -30,7 +30,7 @@ The following rules apply:
 - Each OpenWeatherMap Keyword also permits the usage of these parameters. Example:
 
 ```robot
-Get Current Weather latitude=....
+Get Current Weather   latitude=....
 ```
 - A keyword's parameter value has priority over the ```Setter``` value. This means that if you use ```Set OpenWeathermap Latitude  10``` and ```Get Current Weather  latitude=20```, the value from the OWK Keyword will supersede the ``Setter`` keyword and a value of ```20``` is going to be used.  
 
