@@ -1,5 +1,5 @@
 *** Settings ***
-Library			OpenWeatherMapLibrary.py
+Library			OpenWeatherMapLibrary
 Library			OperatingSystem
 
 Suite Setup     Run My Suite Setup Tasks
@@ -74,17 +74,17 @@ Datetime Getter Setter
 	Should Be Equal			${VALUE1}	${VALUE2}
 
 Get Current Weather Test
-	${RESPONSE_CODE}    ${RESPONSE_BODY}=	Get Current Weather 	latitude=${LAT}     longitude=${LON}	apikey=${APIKEY}
+	${RESPONSE_CODE}    ${RESPONSE_BODY}=	Get Current Weather 	latitude=${LAT}     longitude=${LON}	apikey=${APIKEY}    language=en     output_format=json   unit_format=metric
 	Log To Console	    ${RESPONSE_CODE}
 	Log To Console	    ${RESPONSE_BODY}
 
 Get Hourly Forecast 4 Days Test
-	${RESPONSE_CODE}    ${RESPONSE_BODY}=	Get Hourly Forecast 4 Days 	latitude=${LON}     longitude=${LAT}	apikey=${APIKEY}
+	${RESPONSE_CODE}    ${RESPONSE_BODY}=	Get Hourly Forecast 4 Days 	latitude=${LON}     longitude=${LAT}	apikey=${APIKEY}    output_format=json
 	Log To Console	    ${RESPONSE_CODE}
 	Log To Console	    ${RESPONSE_BODY}
 
 Get OneCall Forecast Test
-	${RESPONSE_CODE}    ${RESPONSE_BODY}=	Get OneCall Forecast	latitude=${LAT}     longitude=${LON}	apikey=${APIKEY}
+	${RESPONSE_CODE}    ${RESPONSE_BODY}=	Get OneCall Forecast	latitude=${LAT}     longitude=${LON}	apikey=${APIKEY}	exclude=alerts,minutely	    language=en     unit_format=metric
 	Log To Console	    ${RESPONSE_CODE}
 	Log To Console	    ${RESPONSE_BODY}
 
@@ -144,9 +144,15 @@ Run My Suite Setup Tasks
     Define My Test Variables
 
 Get API Access Key
+    # Get the OpenWeatherMap API access key from our
+    # environment settings (you can also hardcode it if you wish)
 	${APIKEY}=	Get Environment Variable	OWM_API_KEY
+
+    # Check if we were able to get a value
 	Should Not Be Equal	${APIKEY}	${None}
-	Set Suite Variable	${APIKEY}	${APIKEY}	
+
+    # and elevate variable to suite level
+	Set Suite Variable	${APIKEY}	${APIKEY}
 
 Define My Test Variables
     # Create my lat/lon default set ....

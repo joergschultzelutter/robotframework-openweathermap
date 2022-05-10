@@ -23,7 +23,6 @@ from robot.api.deco import library, keyword, not_keyword
 from enum import Enum
 import re
 import logging
-import os
 
 logging.basicConfig(
     level=logging.DEBUG, format="%(asctime)s %(module)s -%(levelname)s- %(message)s"
@@ -460,6 +459,11 @@ class OpenWeatherMapLibrary:
         output_format = self.__owm_output_format_check(owm_output_format=output_format)
         language = self.__owm_language_check(owm_language=language)
 
+        # API does not support html output; fail the keyword in case
+        # we are suppose to return html content
+        if output_format == "html":
+            raise ValueError("This API call does not support the HTML output format")
+
         __url_path = "/2.5/forecast/hourly"
         url = self.__get_base_api(api_type=OpenWeatherMapApiType.PRO) + __url_path
 
@@ -533,6 +537,11 @@ class OpenWeatherMapLibrary:
         unit_format = self.__owm_unit_format_check(owm_unit_format=unit_format)
         language = self.__owm_language_check(owm_language=language)
 
+        # API does not support html output; fail the keyword in case
+        # we are suppose to return html content
+        if output_format == "html":
+            raise ValueError("This API call does not support the HTML output format")
+
         __url_path = "/2.5/forecast/daily"
         url = self.__get_base_api(api_type=OpenWeatherMapApiType.API) + __url_path
 
@@ -570,6 +579,11 @@ class OpenWeatherMapLibrary:
         output_format = self.__owm_output_format_check(owm_output_format=output_format)
         unit_format = self.__owm_unit_format_check(owm_unit_format=unit_format)
         language = self.__owm_language_check(owm_language=language)
+
+        # API does not support html output; fail the keyword in case
+        # we are suppose to return html content
+        if output_format == "html":
+            raise ValueError("This API call does not support the HTML output format")
 
         __url_path = "/2.5/forecast/climate"
         url = self.__get_base_api(api_type=OpenWeatherMapApiType.PRO) + __url_path
@@ -681,6 +695,11 @@ class OpenWeatherMapLibrary:
         output_format = self.__owm_output_format_check(owm_output_format=output_format)
         unit_format = self.__owm_unit_format_check(owm_unit_format=unit_format)
         language = self.__owm_language_check(owm_language=language)
+
+        # API does not support html output; fail the keyword in case
+        # we are suppose to return html content
+        if output_format == "html":
+            raise ValueError("This API call does not support the HTML output format")
 
         __url_path = "/2.5/forecast"
         url = self.__get_base_api(api_type=OpenWeatherMapApiType.API)
@@ -806,8 +825,16 @@ class OpenWeatherMapLibrary:
         # So let's extract the values from the original payload and then pop the values from the payload
         #
         # Build the request body and remove the original entries from the payload element
-        body_data = {"track": [{"lat": payload.pop("lat"), "lon": payload.pop("lon"), "dt": payload.pop("dt")}]}
-  
+        body_data = {
+            "track": [
+                {
+                    "lat": payload.pop("lat"),
+                    "lon": payload.pop("lon"),
+                    "dt": payload.pop("dt"),
+                }
+            ]
+        }
+
         # Finally, send this request with a request body to the API
         return self.__make_request(url=url, payload=payload, data=body_data)
 
@@ -914,7 +941,4 @@ class OpenWeatherMapLibrary:
 
 
 if __name__ == "__main__":
-    apikey = os.getenv("OWM_API_KEY")
-    a = OpenWeatherMapLibrary()
-    b = a.get_road_risk_data(latitude=51, longitude=8, apikey=apikey, dt=1602702000)
-    logger.info(b)
+    pass

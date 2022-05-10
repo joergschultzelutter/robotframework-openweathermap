@@ -70,40 +70,43 @@ Set OpenWeatherMap Latitude   latitude=51.82798
 You can use these optional Getter/Setter methods for setting your fixed default values. If you specify the same parameter as part of the actual API call, the value specified with that API call supersedes these generic values.
 
 
-| Keyword  | Description | Arguments | Valid Values |
-|----------|-------------|-----------|--------------|
-| ``Get``/``Set OpenWeatherMap Latitude`` | Gets / Sets the latitude value        | ``latitude``  | float value |
-| ``Get``/``Set OpenWeatherMap Longitude`` | Gets / Sets the longitude value        | ``longitude``  | float value |
-| ``Get``/``Set OpenWeatherMap API Key`` | Gets / Sets the OWM API Key        | ``apikey``  | string |
-| ``Get``/``Set OpenWeatherMap Number Of Results`` | Gets / Sets the max number of results  | ``number``  | integer > 0 |
-| ``Get``/``Set OpenWeatherMap Language`` | Gets / Sets the desired output language        | ``language``  | see [OpenWeatherMap API](https://openweathermap.org/current#multi)<br />for valid values |
-| ``Get``/``Set OpenWeatherMap Excludes`` | Gets / Sets the exclude(s) value.<br /> Separarate multiple values with a comma<br />See [API documentation](https://openweathermap.org/api/one-call-api) for details        | ``exclude``  | ``current``<br />``minutely``<br />``hourly``<br />``daily``<br />``alerts`` |
-| ``Get``/``Set OpenWeatherMap Output Format`` | Gets / Sets the output format (e.g. ``json``)        | ``output_format``  | ``json``<br />``xml``<br />``html``
-| ``Get``/``Set OpenWeatherMap Unit Format`` | Gets / Sets the unit format<br />See [API Documentation](https://openweathermap.org/api/one-call-api#data) for details<br />Format availability depends on API call | ``unit_format``  | ``standard``<br />``metric``<br >``imperial`` |
-| ``Get``/``Set OpenWeatherMap Datetime Start`` | Gets / Sets the start datetime for date ranges        | ``dt_start``  | Unix timestamp |
-| ``Get``/``Set OpenWeatherMap Datetime End`` | Gets / Sets the end datetime for date ranges        | ``dt_end``  | Unix timestamp |
-| ``Get``/``Set OpenWeatherMap Datetime`` | Gets / Sets a single point in time        | ``dt``  | Unix Timestamp |
+| Keyword                                          | Description                                                                                                                                                           | Arguments         | Valid Values                                                                             |
+|--------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------|------------------------------------------------------------------------------------------|
+| ``Get``/``Set OpenWeatherMap Latitude``          | Gets / Sets the latitude value                                                                                                                                        | ``latitude``      | float value                                                                              |
+| ``Get``/``Set OpenWeatherMap Longitude``         | Gets / Sets the longitude value                                                                                                                                       | ``longitude``     | float value                                                                              |
+| ``Get``/``Set OpenWeatherMap API Key``           | Gets / Sets the OWM API Key                                                                                                                                           | ``apikey``        | string                                                                                   |
+| ``Get``/``Set OpenWeatherMap Number Of Results`` | Gets / Sets the max number of results                                                                                                                                 | ``number``        | integer > 0                                                                              |
+| ``Get``/``Set OpenWeatherMap Language``          | Gets / Sets the desired output language                                                                                                                               | ``language``      | see [OpenWeatherMap API](https://openweathermap.org/current#multi)<br />for valid values |
+| ``Get``/``Set OpenWeatherMap Excludes``          | Gets / Sets the exclude(s) value.<br /> Separarate multiple values with a comma<br />See [API documentation](https://openweathermap.org/api/one-call-api) for details | ``exclude``       | ``current``<br />``minutely``<br />``hourly``<br />``daily``<br />``alerts``             |
+| ``Get``/``Set OpenWeatherMap Output Format``     | Gets / Sets the output format (e.g. ``json``)                                                                                                                         | ``output_format`` | ``json``<br />``xml``<br />``html``                                                      |
+| ``Get``/``Set OpenWeatherMap Unit Format``       | Gets / Sets the unit format<br />See [API Documentation](https://openweathermap.org/api/one-call-api#data) for details<br />Format availability depends on API call   | ``unit_format``   | ``standard``<br />``metric``<br >``imperial``                                            |
+| ``Get``/``Set OpenWeatherMap Datetime Start``    | Gets / Sets the start datetime for date ranges                                                                                                                        | ``dt_start``      | Unix timestamp                                                                           |
+| ``Get``/``Set OpenWeatherMap Datetime End``      | Gets / Sets the end datetime for date ranges                                                                                                                          | ``dt_end``        | Unix timestamp                                                                           |
+| ``Get``/``Set OpenWeatherMap Datetime``          | Gets / Sets a single point in time                                                                                                                                    | ``dt``            | Unix Timestamp                                                                           |
 
 ## OpenWeatherMap Keywords
 
-Please note that some of these keywords require a paid OpenWeatherMap subscription.
+Please note that a majority of these keywords requires a paid OpenWeatherMap subscription. You can still try to run the keywords but most of them will fail with a http 4xx error unless you have a valid subscription.
 
-| Keyword | Description | Mandatory<br />parameters | Optional<br />parameters | Comments |
-| ------- | ----------- | -------------------- | ------------------- | -------- |
-| [Get Current Weather](https://openweathermap.org/current) | Access current weather data for any location on<br />Earth including over 200,000 cities | ``latitude``<br />``longitude``<br />``apikey``|``output_format``<br />``unit_format``<br />``language`` | | 
-| [Get Hourly Forecast 4 Days](https://openweathermap.org/api/hourly-forecast) | Hourly forecast for 4 days (96 timestamps) | ``latitude``<br />``longitude``<br />``apikey``|``output_format``<br />``number``<br />``language`` | ``output_format`` supports response<br />data in JSON and XML formats |
-| [Get OneCall Forecast](https://openweathermap.org/api/one-call-api) | Current and forecast weather data | ``latitude``<br />``longitude``<br />``apikey``|``exclude``<br />``unit_format``<br />``language`` | |
-| [Get Daily Forecasts 16 Days](https://openweathermap.org/forecast16) | Daily Forecast 16 Days is available at any location on the globe. | ``latitude``<br />``longitude``<br />``apikey``|``number``<br />``unit_format``<br />``output_format``<br />``language`` | ``output_format`` supports response<br />data in JSON and XML formats |
-| [Get Climatic Forecasts 30 Days](https://openweathermap.org/forecast30) | Climate Forecast 30 Days allows you to request daily weather data for the next 30 days | ``latitude``<br />``longitude``<br />``apikey``|``number``<br />``unit_format``<br />``output_format``<br />``language`` | ``output_format`` supports response<br />data in JSON and XML formats |
-| [Get Current Solar Radiation](https://openweathermap.org/api/solar-radiation) | Current solar radiation data | ``latitude``<br />``longitude``<br />``apikey``| | |
-| [Get Solar Radiation Forecast](https://openweathermap.org/api/solar-radiation) | Forecast solar radiation data | ``latitude``<br />``longitude``<br />``apikey``| | |
-| [Get Solar Radiation History](https://openweathermap.org/api/solar-radiation) | Historical solar radiation data<br />for a from-to time span | ``latitude``<br />``longitude``<br />``apikey``<br />``dt_start``<br />``dt_end``| | |
-| [Get 5 Day 3 Hour Forecast](https://openweathermap.org/forecast5) | 5 day forecast is available at any location on the globe | ``latitude``<br />``longitude``<br />``apikey``|``number``<br />``unit_format``<br />``output_format``<br />``language`` | ``output_format`` supports response<br />data in JSON and XML formats |
-| [Get Current Air Pollution Radiation](https://openweathermap.org/api/air-pollution) | Current air pollution data | ``latitude``<br />``longitude``<br />``apikey``| | |
-| [Get Air Pollution Forecast](https://openweathermap.org/api/air-pollution) | Air pollution data forecast | ``latitude``<br />``longitude``<br />``apikey``| | |
-| [Get Air Pollution History](https://openweathermap.org/api/air-pollution) | Historical Air Pollution data<br />for a from-to time span | ``latitude``<br />``longitude``<br />``apikey``<br />``dt_start``<br />``dt_end``| | |
-| [Get Road Risk Data](https://openweathermap.org/api/road-risk) | Road Risk API provides weather data<br />and national alerts at the point of<br />destination and along a route | ``latitude``<br />``longitude``<br />``apikey``<br />``dt``| | |
+| Keyword | Description | Mandatory<br />parameters | Optional<br />parameters | Comments                              |
+| ------- | ----------- | -------------------- | ------------------- |---------------------------------------|
+| [Get Current Weather](https://openweathermap.org/current) | Access current weather data for any location on<br />Earth including over 200,000 cities | ``latitude``<br />``longitude``<br />``apikey``|``output_format``<br />``unit_format``<br />``language`` |                                       | 
+| [Get Hourly Forecast 4 Days](https://openweathermap.org/api/hourly-forecast) | Hourly forecast for 4 days (96 timestamps) | ``latitude``<br />``longitude``<br />``apikey``|``output_format``<br />``number``<br />``language`` | no ``output_format``<br />support for HTML |
+| [Get OneCall Forecast](https://openweathermap.org/api/one-call-api) | Current and forecast weather data | ``latitude``<br />``longitude``<br />``apikey``|``exclude``<br />``unit_format``<br />``language`` |                                       |
+| [Get Daily Forecasts 16 Days](https://openweathermap.org/forecast16) | Daily Forecast 16 Days is available at any location on the globe. | ``latitude``<br />``longitude``<br />``apikey``|``number``<br />``unit_format``<br />``output_format``<br />``language`` | no ``output_format``<br />support for HTML |
+| [Get Climatic Forecasts 30 Days](https://openweathermap.org/forecast30) | Climate Forecast 30 Days allows you to request daily weather data for the next 30 days | ``latitude``<br />``longitude``<br />``apikey``|``number``<br />``unit_format``<br />``output_format``<br />``language`` | no ``output_format``<br />support for HTML |
+| [Get Current Solar Radiation](https://openweathermap.org/api/solar-radiation) | Current solar radiation data | ``latitude``<br />``longitude``<br />``apikey``| |                                       |
+| [Get Solar Radiation Forecast](https://openweathermap.org/api/solar-radiation) | Forecast solar radiation data | ``latitude``<br />``longitude``<br />``apikey``| |                                       |
+| [Get Solar Radiation History](https://openweathermap.org/api/solar-radiation) | Historical solar radiation data<br />for a from-to time span | ``latitude``<br />``longitude``<br />``apikey``<br />``dt_start``<br />``dt_end``| |                                       |
+| [Get 5 Day 3 Hour Forecast](https://openweathermap.org/forecast5) | 5 day forecast is available at any location on the globe | ``latitude``<br />``longitude``<br />``apikey``|``number``<br />``unit_format``<br />``output_format``<br />``language`` | no ``output_format``<br />support for HTML |
+| [Get Current Air Pollution Radiation](https://openweathermap.org/api/air-pollution) | Current air pollution data | ``latitude``<br />``longitude``<br />``apikey``| |                                       |
+| [Get Air Pollution Forecast](https://openweathermap.org/api/air-pollution) | Air pollution data forecast | ``latitude``<br />``longitude``<br />``apikey``| |                                       |
+| [Get Air Pollution History](https://openweathermap.org/api/air-pollution) | Historical Air Pollution data<br />for a from-to time span | ``latitude``<br />``longitude``<br />``apikey``<br />``dt_start``<br />``dt_end``| |                                       |
+| [Get Road Risk Data](https://openweathermap.org/api/road-risk) | Road Risk API provides weather data<br />and national alerts at the point of<br />destination and along a route | ``latitude``<br />``longitude``<br />``apikey``<br />``dt``| |                                       |
 
 
 ## Known issues
+
+- Not all OpenWeatherMap APIs have been assigned with corresponding Robot Framework keywords. What you see is what you get - at least for this version.
+- The ``Get Road Risk Data`` keyword only supports a single set of ``latitude`` and ``longitude`` values (the underlying API supports multiple sets)
 
