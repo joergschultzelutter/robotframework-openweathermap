@@ -92,6 +92,19 @@ Please note that some of these keywords require a paid OpenWeatherMap subscripti
 | Keyword | Description | Mandatory<br />parameters | Optional<br />parameters | Comments |
 | ------- | ----------- | -------------------- | ------------------- | -------- |
 | [Get Current Weather](https://openweathermap.org/current) | Access current weather data for any location on<br /> Earth including over 200,000 cities | ``latitude``<br />``longitude``<br />``apikey``|``output_format``<br />``unit_format``<br />``language`` | | 
+| [Get Hourly Forecast 4 Days](https://openweathermap.org/api/hourly-forecast) | blah | ``latitude``<br />``longitude``<br />``apikey``|``output_format``<br />``number``<br />``language`` | |
+| [Get OneCall Forecast](https://openweathermap.org/api/one-call-api) | blah | ``latitude``<br />``longitude``<br />``apikey``|``exclude``<br />``unit_format``<br />``language`` | |
+| [Get Daily Forecasts 16 Days](https://openweathermap.org/forecast16) | blah | ``latitude``<br />``longitude``<br />``apikey``|``number``<br />``unit_format``<br />``output_format``<br />``language`` | |
+| [Get Climatic Forecasts 30 Days](https://openweathermap.org/forecast30) | blah | ``latitude``<br />``longitude``<br />``apikey``|``number``<br />``unit_format``<br />``output_format``<br />``language`` | |
+| [Get Current Solar Radiation](https://openweathermap.org/api/solar-radiation) | blah | ``latitude``<br />``longitude``<br />``apikey``| | |
+| [Get Solar Radiation Forecast](https://openweathermap.org/api/solar-radiation) | blah | ``latitude``<br />``longitude``<br />``apikey``| | |
+| [Get Solar Radiation History](https://openweathermap.org/api/solar-radiation) | blah | ``latitude``<br />``longitude``<br />``apikey``<br />``dt_start``<br />``dt_end``| | |
+| [Get 5 Day 3 Hour Forecast](https://openweathermap.org/forecast5) | blah | ``latitude``<br />``longitude``<br />``apikey``|``number``<br />``unit_format``<br />``output_format``<br />``language`` | |
+| [Get Current Air Pollution Radiation](https://openweathermap.org/api/air-pollution) | blah | ``latitude``<br />``longitude``<br />``apikey``| | |
+| [Get Air Pollution Forecast](https://openweathermap.org/api/air-pollution) | blah | ``latitude``<br />``longitude``<br />``apikey``| | |
+| [Get Air Pollution History](https://openweathermap.org/api/air-pollution) | blah | ``latitude``<br />``longitude``<br />``apikey``<br />``dt_start``<br />``dt_end``| | |
+| [Get Road Risk Data](https://openweathermap.org/api/road-risk) | blah | ``latitude``<br />``longitude``<br />``apikey``<br />``dt``| | |
+
 
 ## Known issues
 
