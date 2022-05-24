@@ -14,7 +14,7 @@ The easiest way is to install this package is from pypi:
 
 Prerequisites:
 
-The accompanying Robot Framework [test file](https://github.com/joergschultzelutter/robotframework-openweathermap/tests/keyword_checks.robot) relies on two requirements: 
+The accompanying Robot Framework [test file](https://github.com/joergschultzelutter/robotframework-openweathermap/blob/master/tests/keyword_checks.robot) relies on two requirements: 
 
 - [get an OpenWeatherMap API key](https://home.openweathermap.org/users/sign_up) (it's free)
 - create an environment variable ```OWM_API_KEY``` and assign the OpenWeatherMap API key to that variable
