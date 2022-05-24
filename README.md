@@ -67,7 +67,7 @@ Set OpenWeatherMap Latitude   latitude=51.82798
 
 ### Generic Getter / Setter Robot Keywords supported by this library
 
-You can use these optional Getter/Setter methods for setting your fixed default values. If you specify the same parameter as part of the actual API call, the value specified with that API call supersedes these generic values.
+You can use these optional Getter/Setter methods for setting your fixed default values. If you specify the same parameter as part of the actual OpenWeatherMap keyword, the value specified with that API call supersedes these generic Getter/Setter values.
 
 
 | Keyword                                          | Description                                                                                                                                                           | Arguments         | Valid Values                                                                             |
@@ -86,7 +86,9 @@ You can use these optional Getter/Setter methods for setting your fixed default 
 
 ## OpenWeatherMap Keywords
 
-Please note that a majority of these keywords requires a paid OpenWeatherMap subscription. You can still try to run the keywords but most of them will fail with a http 4xx error unless you have a valid subscription.
+Please note that a majority of these keywords requires a paid OpenWeatherMap subscription. You can still try to run the keywords but most of them will fail with a http 4xx error unless you have a valid paid subscription.
+
+Each of the following keywords has a set of mandatory parameters. which means that if you used the setter methods to assign values for ``latitude`` and ``longitude``, for example, you can omit those values for the following keywords. 
 
 | Keyword | Description | Mandatory<br />parameters | Optional<br />parameters | Comments                              |
 | ------- | ----------- | -------------------- | ------------------- |---------------------------------------|
