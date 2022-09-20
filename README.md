@@ -1,6 +1,6 @@
 # robotframework-openweathermap
 
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) [![CodeQL](https://github.com/joergschultzelutter/robotframework-openweathermap/actions/workflows/codeql.yml/badge.svg)](https://github.com/joergschultzelutter/robotframework-openweathermap/actions/workflows/codeql.yml)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) [![CodeQL](https://github.com/joergschultzelutter/robotframework-openweathermap/actions/workflows/codeql.yml/badge.svg)](https://github.com/joergschultzelutter/robotframework-openweathermap/actions/workflows/codeql.yml) [![PyPi version](https://img.shields.io/pypi/v/robotframework-openweathermap.svg)](https://pypi.python.org/pypi/robotframework-openweathermap)
 
 ```robotframework-openweathermap``` is a [Robot Framework](https://www.robotframework.org) keyword collection for the [OpenWeatherMap](https://www.openweathermap.org/api) API.
 
