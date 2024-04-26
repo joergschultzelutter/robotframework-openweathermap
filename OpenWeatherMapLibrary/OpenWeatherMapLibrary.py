@@ -29,7 +29,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-__version__ = "1.0.3"
+__version__ = "1.0.4"
 __author__ = "Joerg Schultze-Lutter"
 
 #
@@ -500,7 +500,7 @@ class OpenWeatherMapLibrary:
         unit_format = self.__owm_unit_format_check(owm_unit_format=unit_format)
         language = self.__owm_language_check(owm_language=language)
 
-        __url_path = "/2.5/onecall"
+        __url_path = "/3.0/onecall"
         url = self.__get_base_api(api_type=OpenWeatherMapApiType.API) + __url_path
 
         # Add mandatory / optional fields whereas present
